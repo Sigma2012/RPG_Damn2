@@ -3,12 +3,14 @@ SOURCES +=	src/main.cc \
 			src/Painter.cc \
 			src/ImageLoader.cc \
 			src/Model.cc \
-			src/Controller.cc
+			src/Controller.cc \
+			src/Item.cc
 HEADERS +=	src/GLWindow.h \
 			src/Painter.h \
 			src/ImageLoader.h \
 			src/Model.h \
 			src/Controller.h
+			src/Item.h
 
 SOURCES += lib/lodepng.cc
 
