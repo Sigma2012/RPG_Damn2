@@ -9,7 +9,7 @@ HEADERS +=	src/GLWindow.h \
 			src/Painter.h \
 			src/ImageLoader.h \
 			src/Model.h \
-			src/Controller.h
+			src/Controller.h \
 			src/Item.h
 
 SOURCES += lib/lodepng.cc
