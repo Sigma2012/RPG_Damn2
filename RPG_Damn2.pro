@@ -1,6 +1,6 @@
 SOURCES +=	src/main.cc \
 			src/GLWindow.cc \
-			src/Painter.cc 
+			src/Painter.cc \
 			src/ImageLoader.cc \
 			src/lodepng.cc \
 			src/Model.cc \
