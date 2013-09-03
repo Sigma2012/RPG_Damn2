@@ -1,0 +1,14 @@
+*.swp
+*.o
+*.a
+Makefile
+*.bak
+*.tmp
+*.~
+*~
+*.log
+moc_*
+*.exe
+src/test/test
+test_*
+RPG_Damn2
