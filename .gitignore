@@ -12,3 +12,6 @@ moc_*
 src/test/test
 test_*
 RPG_Damn2
+*.app
+*.plist
+*.xcodeproj
