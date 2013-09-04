@@ -41,7 +41,7 @@ double sqr(const double x)
 }
 double Distance_Of_Object(Object a,Object b)
 {
-	return sqrt(sqr((a.pos.dx-b.pos.dx))+sqr(s(a.pos.dy-b.pos.dy)));
+	return sqrt(sqr((a.pos.dx-b.pos.dx))+sqr((a.pos.dy-b.pos.dy)));
 }
 
 double Pos_Distance(pos a,pos b)
