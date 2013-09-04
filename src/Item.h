@@ -34,10 +34,24 @@ item::~item()
 }
 class water:public item
 {
-	public:
+ 	public:
 		water();
 		~water();	
 		virtual void _using_item();
 		virtual void _num_decreas();
 		virtual void _take_effect();
 }
+water::water()
+{
+	item_type_flag =1；
+		
+}
+water::~water()
+{
+
+}
+water::_num_decreas()
+{
+
+}
+
