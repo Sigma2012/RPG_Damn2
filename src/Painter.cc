@@ -30,7 +30,7 @@ void Painter::paint()
 		id_ = loadImage("4.png");
 	id_map = loadImage("scene.png");
 	fillImage(cheche->pos.dx, cheche->pos.dy, 0.3f, 0.3f, id_);
-	}
+}
 
 void Painter::init()
 {
