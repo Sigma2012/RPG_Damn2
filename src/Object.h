@@ -2,7 +2,7 @@
 #define FACING_RIGHT 2
 #define	FACING_DOWN	 3
 #define FACING_LEFT  4
-
+#include <cmath>
 struct coordinate
 {
 	double dx,dy;
@@ -10,8 +10,8 @@ struct coordinate
 class Object
 {
 	public:
-		object();
-		~object();
+		Object();
+		~Object();
 		coordinate pos;						//中心坐标
 		int FacingDirection;				//面朝方向，用于贴图的确定
 		double Radius;						//碰撞半径
@@ -26,7 +26,7 @@ class Object
 
    */
 
-object::object()
+Object::Object()
 {
 	pos.dx=0.0;
 	pos.dy=0.0;
@@ -34,16 +34,20 @@ object::object()
 	Radius=0.0;
 	Lable=0;
 }
+void Object::HittingEvent()
+{
+
+}
 double sqr(const double x)
 {
-	return a*a;
+	return x*x;
 }
 double Distance_Of_Object(Object a,Object b)
 {
 	return sqrt(sqr((a.pos.dx-b.pos.dx))+sqr((a.pos.dy-b.pos.dy)));
 }
 
-double Pos_Distance(pos a,pos b)
+double Pos_Distance(coordinate a,coordinate b)
 {
 	return sqrt(sqr(a.dx-b.dx)+sqr(a.dy-b.dy));
 }

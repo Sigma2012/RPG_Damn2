@@ -5,7 +5,7 @@
 		Character();
 		~Character();
 		int Walking_Time_Tick;
-		
+		virtual void HittingEvent();
 }_Player;
 Character::Character()
 {
@@ -14,7 +14,7 @@ Character::Character()
 	Radius = 5.0;
 
 }
-Character::HittingEvent()
+void Character::HittingEvent()
 {
 	
 }
