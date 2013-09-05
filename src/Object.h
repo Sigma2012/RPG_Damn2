@@ -18,7 +18,6 @@ class Object
 		int Lable;							//标签，标志这个是什么类型的东西，是NPC，怪物还是物品
 		virtual void HittingEvent();		//碰撞的时候触发的事件
 
-
 };
 /*
 	lable的取值：
