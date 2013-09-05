@@ -35,5 +35,6 @@ private:
 	Character * cheche;
 	const char *filename;
 	int id_;
+    int save[4];
 	int id_map;
 };
