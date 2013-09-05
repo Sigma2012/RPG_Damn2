@@ -12,6 +12,7 @@ struct paint_func
 	};
 	
 class Model;
+class Character;
 class Painter
 {
 public:
@@ -31,6 +32,8 @@ private:
 	funv4f1i fillImage;
 	funi1p loadImage;
 	Model* model;
+	Character * cheche;
 	const char *filename;
 	int id_;
+	int id_map;
 };

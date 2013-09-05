@@ -1,9 +1,16 @@
-class Object;
- class Character:public Object
+#include "Object.h"
+class Character:public Object
 {
 	public:
-		Character();
 		~Character();
 		int Walking_Time_Tick;
+		int FacingDirection;
+		double Radius;
 		virtual void HittingEvent();
-}_Player;
+		static Character* getInstance();
+		
+	private:
+		static Character* instance_;
+		Character();
+};
+

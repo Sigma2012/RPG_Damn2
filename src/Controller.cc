@@ -1,10 +1,15 @@
 #include "Controller.h"
 #include "Model.h"
+#include "Character.h"
 #include <QtGui/QKeyEvent>
+
+
+
 
 Controller::Controller()
 {
 	model = Model::getInstance();
+	cheche = Character::getInstance();
 	}
 
 Controller::~Controller()
@@ -13,19 +18,24 @@ Controller::~Controller()
 
 void Controller::key_press(int key)
 {
-	switch(key)
+
+	switch(key) 
 	{
 	case Qt::Key_Down:
-		model->y += 0.1f;
-		break;
+		cheche->pos.dy += 0.1f;
+		cheche->FacingDirection = 3;
+ 		break;
 	case Qt::Key_Right:
-		model->x += 0.1f;
+		cheche->pos.dx += 0.1f;
+		cheche->FacingDirection = 2;
 		break;
 	case Qt::Key_Left:
-		model->x -= 0.1f;
+		cheche->pos.dx -= 0.1f;
+		cheche->FacingDirection = 4;
 		break;
 	case Qt::Key_Up:
-		model->y -= 0.1f;
+		cheche->pos.dy -= 0.1f;
+		cheche->FacingDirection = 1;
 		break;
 	default:
 		break;

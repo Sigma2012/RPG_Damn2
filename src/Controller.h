@@ -1,5 +1,6 @@
 
 class Model;
+class Character;
 class Controller
 {
 public:
@@ -9,4 +10,5 @@ public:
 
 private:
 	Model *model;
+	Character *cheche;
 	};
