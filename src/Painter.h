@@ -10,6 +10,7 @@ struct paint_func
 	
 class Model;
 class Character;
+class Controller;
 class Painter
 {
 public:
@@ -24,8 +25,5 @@ private:
 	funi1p loadImage;
 	Model* model;
 	Character * cheche;
-	const char *filename;
-	int id_;
-	int save[16];
-	int id_map;
+	Controller * ctrl;
 };

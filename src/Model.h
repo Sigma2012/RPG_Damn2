@@ -4,15 +4,16 @@ using std::queue;
 class Model
 {
 public:
-	float width, height;
-	float x, y;
-	static Model* getInstance();
 	~Model();
+	static Model* getInstance();
 	void Get_Drawing_Queue();
 
-    //地图贴图坐标//////////
 	float map_x, map_y;
-	////////////////////////
+	int map_num;//地图标签
+	int cha_num;//角色朝向标签
+	int save[16];
+	int map_id;
+	int cha_id;
 
 	private:
 	static Model* instance_;
