@@ -8,7 +8,7 @@ class Character:public Object
 		double Radius;
 		virtual void HittingEvent();
 		static Character* getInstance();
-		
+		int Leg_Condition;
 	private:
 		static Character* instance_;
 		Character();

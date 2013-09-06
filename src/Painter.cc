@@ -47,8 +47,13 @@ void Painter::paint()
         id_ = save[12+number];
     }
     //id_map = loadImage("scene.png");
-    if (cheche->Walking_Time_Tick>0)cheche->Walking_Time_Tick--;
-	fillImage(cheche->pos.dx, cheche->pos.dy, 0.08f, 0.145f, id_);
+    if (cheche->Leg_Condition)
+	{
+		if (cheche->Walking_Time_Tick>0)cheche->Walking_Time_Tick--;
+	
+	}
+	if (cheche->Walking_Time_Tick % 14 == 0)cheche->Leg_Condition = 0;
+		fillImage(cheche->pos.dx, cheche->pos.dy, 0.08f, 0.145f, id_);
 }
 
 void Painter::init()

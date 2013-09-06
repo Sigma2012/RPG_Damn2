@@ -1,6 +1,6 @@
 #include <queue>
 using std::queue;
-queue<int> Drawing_Queue; 
+//queue<int> Drawing_Queue; 
 class Model
 {
 public:

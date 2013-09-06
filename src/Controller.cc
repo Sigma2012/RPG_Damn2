@@ -55,5 +55,9 @@ void Controller::key_press(int key)
 	default:
 		break;
 		}
-    if (!cheche->Walking_Time_Tick) cheche->Walking_Time_Tick+=27;
-}
+    if (!cheche->Leg_Condition)
+	{
+	    cheche->Leg_Condition = 1;
+		if (!cheche->Walking_Time_Tick) cheche->Walking_Time_Tick+=27;
+	}
+	}
