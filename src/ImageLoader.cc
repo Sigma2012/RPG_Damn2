@@ -10,7 +10,7 @@ ImageLoader::~ImageLoader()
 {
 	}
 
-int ImageLoader::load(const char*filename)
+int ImageLoader::load(const char * filename)
 {
 	PNG * image = new PNG;
 	unsigned int error = lodepng::decode(image->data, image->width, image->height, filename);

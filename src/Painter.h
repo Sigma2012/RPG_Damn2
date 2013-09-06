@@ -9,7 +9,7 @@ struct paint_func
 	funv4f setColor;
 	funv4f1i fillImage;
 	funi1p loadImage;
-	};
+};
 	
 class Model;
 class Character;
@@ -35,6 +35,6 @@ private:
 	Character * cheche;
 	const char *filename;
 	int id_;
-    int save[4];
+        int save[16];
 	int id_map;
 };

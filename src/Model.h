@@ -6,6 +6,10 @@ public:
 	static Model* getInstance();
 	~Model();
 
+    //地图贴图坐标//////////
+	float map_x, map_y;
+	////////////////////////
+
 private:
 	static Model* instance_;
 	Model();
