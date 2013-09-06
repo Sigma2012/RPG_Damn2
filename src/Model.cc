@@ -15,3 +15,7 @@ Model* Model::getInstance()
 		instance_ = new Model;
 	return instance_;
 }
+Model::void Get_Drawing_Queue()
+{
+	
+}
