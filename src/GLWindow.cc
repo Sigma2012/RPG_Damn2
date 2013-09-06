@@ -10,32 +10,20 @@ GLWindow::GLWindow(QWidget *parents )
 :QGLWidget(parents)
 {
 	paint_func func;
-	func.fillRect = std::tr1::bind(&GLWindow::fillRect, this, _1, _2, _3, _4);
-	func.setColor = std::tr1::bind(&GLWindow::setColor, this, _1, _2, _3, _4);
 	func.fillImage = std::tr1::bind(&GLWindow::fillImage, this, _1, _2, _3, _4, _5);
 	func.loadImage = std::tr1::bind(&GLWindow::loadImage, this, _1);
 	painter = new Painter(func);
 	model = Model::getInstance();
 	ctrl = new Controller;
 	image_loader = new ImageLoader;
-
-	rect_x = 0.4f;
-	rect_y = 0.0f;
-	rect_width = 0.2f;
-	rect_height = 0.75f;
-
 	paint_timer = new QTimer;
 	connect(paint_timer, SIGNAL(timeout()), this, SLOT(updateGL()));
-	process_timer = new QTimer;
-	connect(process_timer, SIGNAL(timeout()), this, SLOT(on_process()));
 }
 
 GLWindow::~GLWindow()
 {
 	paint_timer->stop();
-	process_timer->stop();
 	delete paint_timer;
-	delete process_timer;
 	delete painter;
 	delete image_loader;
 	delete ctrl;
@@ -53,7 +41,6 @@ void GLWindow::initializeGL()
 	setAutoBufferSwap(false);//swap buffer by hand(timer)
 	painter->init();
 	paint_timer->start(1000.0f/60);
- 	process_timer->start(1000.0f/60);
 }
 
 void GLWindow::resizeGL(int width, int height)
@@ -65,7 +52,6 @@ void GLWindow::paintGL()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-	//setColor(1.0f, 0.0f, 0.0f, 1.0f);
 	painter->paint();
  	swapBuffers();
 }
@@ -73,21 +59,6 @@ void GLWindow::paintGL()
 void GLWindow::keyPressEvent(QKeyEvent * event)
 {
 	ctrl->key_press(event->key());
-	}
-
-void GLWindow::_fillRect(float x, float y, float width, float height)
-{
-	glBegin(GL_POLYGON);
-	glVertex3f(x, y, 0.0f);
-	glVertex3f(x, y + height, 0.0f);
-	glVertex3f(x + width, y + height, 0.0f);
-	glVertex3f(x + width, y, 0.0f);
-	glEnd();
-	}
-
-void GLWindow::fillRect(float x, float y, float width, float height)
-{
-	_fillRect(gl_x(x), gl_y(y), gl_width(width), gl_height(height));
 	}
 
 void GLWindow::_fillImage(float x, float y, float width, float height, int id)
@@ -124,8 +95,3 @@ int GLWindow::loadImage(const char* filename)
 	return static_cast<int>(g_id);
 	}
 
-void GLWindow::on_process()
-{
-	 rect_width += 0.01f/60;
-	rect_height += 0.01f/60;
-	}

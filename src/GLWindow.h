@@ -8,8 +8,8 @@ class Controller;
 class GLWindow: public QGLWidget
 {
 	Q_OBJECT
-	public slots:
-	void on_process();
+	//public slots:
+	//void on_process();
 public:
 	GLWindow(QWidget *parents = 0);
 	~GLWindow();
@@ -39,19 +39,11 @@ private:
 		return 2 * -height;
 		}
 	
-	void _fillRect(float x, float y, float width, float height);
-	void fillRect(float x, float y, float width, float height);
 	void _fillImage(float x, float y, float width, float height, int id);
 	void fillImage(float x, float y, float width, float height, int id);
 	int loadImage(const char* filename);
-	void setColor(float R, float G, float B, float A)
-	{
-		glColor4f(R, G, B, A);
-		}
 
 	QTimer *paint_timer;
-	QTimer *process_timer;
-	float rect_x, rect_y, rect_width, rect_height;
 	Painter *painter;
 	Model* model;
 	ImageLoader *image_loader;

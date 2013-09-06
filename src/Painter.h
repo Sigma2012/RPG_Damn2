@@ -1,12 +1,9 @@
 #include <tr1/functional>
 
-typedef std::tr1::function<void(float, float, float, float)> funv4f;
 typedef std::tr1::function<void(float, float, float, float, int)> funv4f1i;
 typedef std::tr1::function<int(const char *)> funi1p;
 struct paint_func
 {
-	funv4f fillRect;
-	funv4f setColor;
 	funv4f1i fillImage;
 	funi1p loadImage;
 };
@@ -20,21 +17,15 @@ public:
 	~Painter();
 
 	void paint();
-//	{
-//		setColor(1.0f, 0.0f, 1.0f, 0.7f);
-//		fillImage(0.3f, 0.1f, 0.35f, 0.2f, id_);
-//		}
 	void init();
 
 private:
-	funv4f fillRect;
-	funv4f setColor;
 	funv4f1i fillImage;
 	funi1p loadImage;
 	Model* model;
 	Character * cheche;
 	const char *filename;
 	int id_;
-        int save[16];
+	int save[16];
 	int id_map;
 };
