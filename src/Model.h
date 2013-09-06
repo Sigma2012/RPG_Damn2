@@ -1,5 +1,5 @@
 #include <queue>
-std::queue;
+using std::queue;
 queue<int> Drawing_Queue; 
 class Model
 {
