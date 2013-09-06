@@ -20,18 +20,26 @@ void Controller::key_press(int key)
 	case Qt::Key_Down:
         cheche->FacingDirection = 3;
         model->map_y -=0.1f;
+		if(model->map_y < -1.0f)
+			model->map_y = -1.0f;
         break;
 	case Qt::Key_Right:
         cheche->FacingDirection = 2;
         model->map_x -= 0.1f;
+		if(model->map_x < -1.0f)
+			model->map_x = -1.0f;
         break;
 	case Qt::Key_Left:
         cheche->FacingDirection = 4;
         model->map_x += 0.1f;
+		if(model->map_x > 0.0f)
+			model->map_x = 0.0f;
         break;
 	case Qt::Key_Up:
         cheche->FacingDirection = 1;
         model->map_y += 0.1f;
+		if(model->map_y > 0.0f)
+			model->map_y = 0.0f;
         break;
 	default:
 		break;
