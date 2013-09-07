@@ -26,8 +26,9 @@ class Image_Info
 };
 class Conversation_Information
 {
-	int Counter;							//记录现在已经到了第几个了
-	vector<int> Conversation_Sequence;		//记录这个对话到底有哪些图片组成
+	public:
+		int Counter;							//记录现在已经到了第几个了
+		vector<int> Conversation_Sequence;		//记录这个对话到底有哪些图片组成
 };
 class Model
 {

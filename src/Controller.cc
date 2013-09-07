@@ -70,12 +70,12 @@ void Controller::update_queue()
 	model->Drawing_Queue.push(Image_Info(model->cha_x, model->cha_y,0.08f,0.145f,model->cha_id));
 	if (model->ConverSeq!=NULL)
 	{
-		model->Drawing_Queue.push(Image_Info(0,0.5,1,0.5,model->ConverSeq->Conversation_Sequence[Counter]));
-		Counter++;
-		if (Counter==model->ConverSeq->Conversation_Sequence.size())
+		model->Drawing_Queue.push(Image_Info(0,0.5,1,0.5,model->ConverSeq->Conversation_Sequence[model->ConverSeq->Counter]));
+		model->ConverSeq->Counter++;
+		if (model->ConverSeq->Counter==model->ConverSeq->Conversation_Sequence.size())
 		{
-			delete(model->ConverSeq);
-			ConverSeq=NULL;
+			delete(model-> ConverSeq);
+			model->ConverSeq=NULL;
 		}
 	}
 }	
