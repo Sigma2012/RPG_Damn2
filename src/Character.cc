@@ -5,8 +5,8 @@ Character * Character::instance_ = NULL;
 Character::Character()
 {
     //主角坐标初始化
-	pos.dx = 0.5f;
-	pos.dy = 0.5f;
+	pos.dx = 1.0f;
+	pos.dy = 1.0f;
 	///////////////////////
 	Walking_Time_Tick = 0;
 	FacingDirection =FACING_DOWN;

@@ -3,6 +3,10 @@
 Model * Model::instance_ = NULL;
 Model::Model()
 {
+	cha_x = 0.5f;
+	cha_y = 0.5f;
+	map_x = -1.0f;
+	map_y = -1.0f;
 	}
 
 Model::~Model()
