@@ -14,7 +14,8 @@ HEADERS +=	src/GLWindow.h \
 			src/Controller.h \
 			src/Item.h \
 			src/Object.h \
-			src/Character.h
+			src/Character.h \
+			src/NonPlayerCharacter.h
 
 SOURCES += lib/lodepng.cc
 
