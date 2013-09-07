@@ -66,6 +66,10 @@ void Controller::update_queue()
 		case 4:model->cha_id = model->save[12+model->cha_num];break;
 		default:break;
 	}
+	model->Drawing_Queue.push(Image_Info(model->map_x, model->map_y,2,2,model->map_id));
+	model->Drawing_Queue.push(Image_Info(model->cha_x, model->cha_y,0.08f,0.145f,model->cha_id));
+	Image_Info mif;
+	mif = model->Drawing_Queue.front();
 }
 
 float Controller::pos_trans_x(float x)

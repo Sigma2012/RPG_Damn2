@@ -20,14 +20,20 @@ void Painter::paint()
 {
 	ctrl->update_queue();
 	//修改地图坐标由model和cotroller共同控制
-	fillImage(model->map_x, model->map_y, 2, 2, model->map_id);
-    
     if (cheche->Leg_Condition)
 		if (cheche->Walking_Time_Tick>0)
 			cheche->Walking_Time_Tick--;
 	if (cheche->Walking_Time_Tick % 14 == 0)
 		cheche->Leg_Condition = 0;
-	fillImage(model->cha_x, model->cha_y, 0.08f, 0.145f, model->cha_id);
+	while (!model->Drawing_Queue.empty())
+	{
+		fillImage(model->Drawing_Queue.front().Up_x,
+				model->Drawing_Queue.front().Up_y,
+				model->Drawing_Queue.front().Size_x,
+				model->Drawing_Queue.front().Size_y,
+				model->Drawing_Queue.front().Image_ID);
+		model->Drawing_Queue.pop();
+	}
 }
 
 void Painter::init()

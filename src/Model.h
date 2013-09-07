@@ -5,9 +5,15 @@ class Image_Info
 {
 	public:
 		int Image_ID;
-		int Up_x,Up_y;
-		int Size_x,Size_y;
-		Image_Info(int II,int UX,int UY,int sx,int sy)
+		float Up_x,Up_y;
+		float Size_x,Size_y;
+		Image_Info()
+		{
+			Image_ID = 0;
+			Up_x = 0; Up_y = 0;
+			Size_x = 0; Size_y = 0;
+		}
+		Image_Info(float UX,float UY,float sx,float sy,int II)
 		{
 			Image_ID = II;
 			Up_x = UX;
