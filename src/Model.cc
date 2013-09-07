@@ -7,7 +7,8 @@ Model::Model()
 	cha_y = 0.5f;
 	map_x = -1.0f;
 	map_y = -1.0f;
-	}
+	ConverSeq = NULL;	
+}
 
 Model::~Model()
 {

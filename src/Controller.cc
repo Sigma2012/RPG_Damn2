@@ -68,9 +68,17 @@ void Controller::update_queue()
 	}
 	model->Drawing_Queue.push(Image_Info(model->map_x, model->map_y,2,2,model->map_id));
 	model->Drawing_Queue.push(Image_Info(model->cha_x, model->cha_y,0.08f,0.145f,model->cha_id));
-	Image_Info mif;
-	mif = model->Drawing_Queue.front();
-}
+	if (model->ConverSeq!=NULL)
+	{
+		model->Drawing_Queue.push(Image_Info(0,0.5,1,0.5,model->ConverSeq->Conversation_Sequence[Counter]));
+		Counter++;
+		if (Counter==model->ConverSeq->Conversation_Sequence.size())
+		{
+			delete(model->ConverSeq);
+			ConverSeq=NULL;
+		}
+	}
+}	
 
 float Controller::pos_trans_x(float x)
 {
