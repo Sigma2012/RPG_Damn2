@@ -19,59 +19,31 @@ void Controller::key_press(int key)
 	{
 	case Qt::Key_Down:
         cheche->FacingDirection = 3;
-		cheche->pos.dy +=0.1f;
+		cheche->pos.dy += 0.1f;
+		model->map_y -= 0.1f;
 		model->cha_x = pos_trans_x(cheche->pos.dx);
 		model->cha_y = pos_trans_y(cheche->pos.dy);
-        model->map_y -=0.1f;
-		if(model->map_y < -1.0f)
-			model->map_y = -1.0f;
-		if(model->cha_y > 1.0f)
-		{
-			model->cha_y -= 0.1f;
-			cheche->pos.dy -= 0.1f;
-		}
         break;
 	case Qt::Key_Right:
         cheche->FacingDirection = 2;
 		cheche->pos.dx += 0.1f;
+		model->map_x -= 0.1f;
 		model->cha_x = pos_trans_x(cheche->pos.dx);
 		model->cha_y = pos_trans_y(cheche->pos.dy);
-        model->map_x -= 0.1f;
-		if(model->map_x < -1.0f)
-			model->map_x = -1.0f;
-		if(model->cha_x > 0.9f)
-		{
-			model->cha_x -= 0.1f;
-			cheche->pos.dx -= 0.1f;
-		}
         break;
 	case Qt::Key_Left:
         cheche->FacingDirection = 4;
 		cheche->pos.dx -= 0.1f;
+		model->map_x += 0.1f;
 		model->cha_x = pos_trans_x(cheche->pos.dx);
 		model->cha_y = pos_trans_y(cheche->pos.dy);
-        model->map_x += 0.1f;
-		if(model->map_x > 0.0f)
-			model->map_x = 0.0f;
-		if(model->cha_x < -0.1f)
-		{
-			model->cha_x += 0.1f;
-			cheche->pos.dx += 0.1f;
-		}
         break;
 	case Qt::Key_Up:
         cheche->FacingDirection = 1;
 		cheche->pos.dy -= 0.1f;
+		model->map_y += 0.1f;
 		model->cha_x = pos_trans_x(cheche->pos.dx);
 		model->cha_y = pos_trans_y(cheche->pos.dy);
-        model->map_y += 0.1f;
-		if(model->map_y > 0.0f)
-			model->map_y = 0.0f;
-		if(model->cha_y < 0.0f)
-		{
-			model->cha_y -= 0.1f;
-			cheche->pos.dy += 0.1f;
-		}
         break;
 	default:
 		break;
