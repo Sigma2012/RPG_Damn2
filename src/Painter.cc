@@ -23,9 +23,11 @@ void Painter::paint()
 	fillImage(model->map_x, model->map_y, 2, 2, model->map_id);
     
     if (cheche->Leg_Condition)
-		if (cheche->Walking_Time_Tick>0)cheche->Walking_Time_Tick--;
-	if (cheche->Walking_Time_Tick % 14 == 0)cheche->Leg_Condition = 0;
-		fillImage(cheche->pos.dx, cheche->pos.dy, 0.08f, 0.145f, model->cha_id);
+		if (cheche->Walking_Time_Tick>0)
+			cheche->Walking_Time_Tick--;
+	if (cheche->Walking_Time_Tick % 14 == 0)
+		cheche->Leg_Condition = 0;
+	fillImage(model->cha_x, model->cha_y, 0.08f, 0.145f, model->cha_id);
 }
 
 void Painter::init()
