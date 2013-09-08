@@ -1,4 +1,5 @@
 #include "Character.h"
+#include "Model.h"
 #define NULL 0
 Character * Character::instance_ = NULL;
 
@@ -28,4 +29,20 @@ Character* Character::getInstance()
 		instance_ = new Character;
 		}
 	return instance_;
+}
+NonPlayerCharacter::NonPlayerCharacter()
+{
+    model = Model::getInstance();
+    Map_Belonging = 1;
+}
+NonPlayerCharacter::~NonPlayerCharacter()
+{
+    
+}
+void NonPlayerCharacter::HittingEvent()
+{
+    model->ConverSeq = new(Conversation_Information);
+    for (int i(0);i<Dialog_Sequence.size();++i)
+        model->ConverSeq->Conversation_Sequence.push_back(Dialog_Sequence[i]);
+    model->ConverSeq->Counter = 0;
 }
