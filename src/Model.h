@@ -1,5 +1,10 @@
 #include <queue>
 #include <vector>
+#define MAIN_MENU_STATUS	1
+#define MAIN_GAME_STATUS	2
+#define DIALOGUE_STATUS		3
+#define CALLING_MENU_STATUS 4
+#define NPC_SUM 20
 using std::vector;
 using std::queue;
 //queue<int> Drawing_Queue; 
@@ -36,11 +41,12 @@ public:
 	~Model();
 	static Model* getInstance();
 	queue<Image_Info> Drawing_Queue;
-	float map_x, map_y;//贴图用地图坐标
-	float cha_x, cha_y;//贴图用主角坐标
+	float map_x, map_y;					//贴图用地图坐标
+	float cha_x, cha_y;					//贴图用主角坐标
 	Conversation_Information* ConverSeq;
-	int map_num;//地图标签
-	int cha_num;//角色朝向标签
+	int map_num;						//地图标签,测试状态下地图标签为-1
+	int Window_Status;					//标签，表明现在是出于一个什么样的状态，测试状态下这个为1
+	int cha_num;						//角色朝向标签
 	int save[16];
 	int map_id;
 	int cha_id;

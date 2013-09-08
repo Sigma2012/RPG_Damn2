@@ -6,7 +6,8 @@ SOURCES +=	src/main.cc \
 			src/Controller.cc \
 			src/Item.cc \
 			src/Object.cc \
-			src/Character.cc 
+			src/Character.cc \
+                        src/NonPlayerCharacter.cc
 HEADERS +=	src/GLWindow.h \
 			src/Painter.h \
 			src/ImageLoader.h \
