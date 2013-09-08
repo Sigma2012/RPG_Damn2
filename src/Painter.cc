@@ -55,7 +55,9 @@ void Painter::init()
 	model->save[13]=loadImage("L2.png");
 	model->save[14]=loadImage("L3.png");
 	model->save[15]=loadImage("L4.png");
-   
+    //初始大地图ID
+    model->map_num = -1;
+    model->Window_Status=MAIN_GAME_STATUS;
     //大地图贴图初始坐标
 	model->map_x = -0.5f;
 	model->map_y = -0.5f;
