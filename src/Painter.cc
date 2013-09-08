@@ -3,6 +3,7 @@
 #include "Character.h"
 #include "Controller.h"
 
+NonPlayerCharacter Container[20];
 Painter::Painter(paint_func &func)
 {
 	this->fillImage = func.fillImage;
@@ -61,7 +62,15 @@ void Painter::init()
     //大地图贴图初始坐标
 	model->map_x = -0.5f;
 	model->map_y = -0.5f;
-    
+	//NPC初始化序列
+    model->NPC_Saver = &Container[0]; 
+	//以下开始读入NPC
+    model->NPC_Saver[0].Map_Belonging = -1;	
+	model->NPC_Saver[0].Map_Drawing_Picture =loadImage("NPC_0.png");
+	model->NPC_Saver[0].Dialog_Sequence.push_back(loadImage("TD1.png"));
+	model->NPC_Saver[0].pos.dx=1.5;
+	model->NPC_Saver[0].pos.dy=1.5;
+	//以下代码段不知道可不可以删除
     if(cheche->FacingDirection == 1)
 		model->cha_id = model->save[0];
     else if(cheche->FacingDirection == 2)

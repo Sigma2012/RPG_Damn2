@@ -13,6 +13,16 @@ Controller::~Controller()
 {
 	}
 
+float Controller::sqr(float a)
+{
+	return a*a;
+}
+
+float Controller::Pos_Distance(float ax,float ay,float bx,float by)
+{
+	return sqrt(sqr(ax-bx)+sqr(ay-by));
+}
+
 void Controller::key_press(int key)
 {
     switch(model->Window_Status)
@@ -25,40 +35,29 @@ void Controller::key_press(int key)
 		}
         case MAIN_GAME_STATUS:			//从这里开始是主要游戏界面的响应
         {
-            switch(key)
+            float Virtual_x(cheche->pos.dx),Virtual_y(cheche->pos.dy);
+			switch(key)
             {
                 case Qt::Key_Down:
-                    cheche->FacingDirection = 3;
-                    cheche->pos.dy += 0.1f;
-                    model->map_y -= 0.1f;
-                    model->cha_x = pos_trans_x(cheche->pos.dx);
-                    model->cha_y = pos_trans_y(cheche->pos.dy);
-                    break;
+					cheche->FacingDirection = 3;
+                    Virtual_y += 0.1f;
+                    break; 
                 case Qt::Key_Right:
-                    cheche->FacingDirection = 2;
-                    cheche->pos.dx += 0.1f;
-                    model->map_x -= 0.1f;
-                    model->cha_x = pos_trans_x(cheche->pos.dx);
-                    model->cha_y = pos_trans_y(cheche->pos.dy);
-                    break;
+					cheche->FacingDirection = 2;
+                    Virtual_x += 0.1f;
+                    break; 
                 case Qt::Key_Left:
-                    cheche->FacingDirection = 4;
-                    cheche->pos.dx -= 0.1f;
-                    model->map_x += 0.1f;
-                    model->cha_x = pos_trans_x(cheche->pos.dx);
-                    model->cha_y = pos_trans_y(cheche->pos.dy);
+					cheche->FacingDirection = 4;
+                    Virtual_x-= 0.1f; 
                     break;
                 case Qt::Key_Up:
-                    cheche->FacingDirection = 1;
-                    cheche->pos.dy -= 0.1f;
-                    model->map_y += 0.1f;
-                    model->cha_x = pos_trans_x(cheche->pos.dx);
-                    model->cha_y = pos_trans_y(cheche->pos.dy);
+					cheche->FacingDirection = 1;
+                    Virtual_y -= 0.1f;
                     break;
                 case Qt::Key_Escape:
                     model->Window_Status = CALLING_MENU_STATUS;
                     break;
-                default:
+                default: 
                     break;
             }
             if (!cheche->Leg_Condition)
@@ -66,7 +65,64 @@ void Controller::key_press(int key)
                 cheche->Leg_Condition = 1;
                 if (!cheche->Walking_Time_Tick) cheche->Walking_Time_Tick+=27;
             }
-            break;
+#define Collision 0.01
+			bool flag_for_event=0;
+		    for (int i(0);i<model->NPC_Sum;++i)
+			{
+                float Distance = 10;
+                Distance=Pos_Distance(model->NPC_Saver[i].pos.dx,
+                                      model->NPC_Saver[i].pos.dy,
+                                      Virtual_x,
+                                      Virtual_y);
+                if (Distance<Collision)//说明撞到了NPC
+				{
+					model->NPC_Saver[i].HittingEvent();
+					flag_for_event = 1;
+					model->Window_Status=DIALOGUE_STATUS;
+					break;
+				}
+			}
+            //说明我们没有撞到NPC，按照正常的方法去更新整个地图
+			if (!flag_for_event)
+			{
+				switch(key)
+                {
+                    case Qt::Key_Down:
+                        cheche->FacingDirection = 3;
+                        cheche->pos.dy += 0.1f;
+                        model->map_y -= 0.1f;
+                        model->cha_x = pos_trans_x(cheche->pos.dx);
+                        model->cha_y = pos_trans_y(cheche->pos.dy);
+                        break;
+                    case Qt::Key_Right:
+                        cheche->FacingDirection = 2;
+                        cheche->pos.dx += 0.1f;
+                        model->map_x -= 0.1f;
+                        model->cha_x = pos_trans_x(cheche->pos.dx);
+                        model->cha_y = pos_trans_y(cheche->pos.dy);
+                        break;
+                    case Qt::Key_Left:
+                        cheche->FacingDirection = 4;
+                        cheche->pos.dx -= 0.1f;
+                        model->map_x += 0.1f;
+                        model->cha_x = pos_trans_x(cheche->pos.dx);
+                        model->cha_y = pos_trans_y(cheche->pos.dy);
+                        break;
+                    case Qt::Key_Up:
+                        cheche->FacingDirection = 1;
+                        cheche->pos.dy -= 0.1f;
+                        model->map_y += 0.1f;
+                        model->cha_x = pos_trans_x(cheche->pos.dx);
+                        model->cha_y = pos_trans_y(cheche->pos.dy);
+                        break;
+                    case Qt::Key_Escape:
+                        model->Window_Status = CALLING_MENU_STATUS;
+                        break;
+                    default:
+                        break;
+                }
+            }
+		   break;
         }
 		case DIALOGUE_STATUS:		//从这里开始是和NPC进行对话的状态下的键盘响应
 		{
@@ -128,7 +184,7 @@ void Controller::update_queue()
 		{
 			if (model->NPC_Saver[i].Map_Belonging==model->map_num)
 			{
-				model->Drawing_Queue.push(Image_Info(model->NPC_Saver[i].pos.dx,model->NPC_Saver[i].pos.dy,0.08f,0.145f,model->NPC_Saver[i].Map_Drawing_Picture));
+				model->Drawing_Queue.push(Image_Info(pos_trans_x(model->NPC_Saver[i].pos.dx),pos_trans_y(model->NPC_Saver[i].pos.dy),0.08f,0.145f,model->NPC_Saver[i].Map_Drawing_Picture));
 			}
 		}
         
@@ -140,6 +196,7 @@ void Controller::update_queue()
 	{
 		delete(model -> ConverSeq);
 		model->ConverSeq=NULL;
+		model->Window_Status = MAIN_GAME_STATUS;
 	}
 	
 	if (model->ConverSeq!=NULL)

@@ -9,7 +9,7 @@ Model::Model()
 	map_y = -1.0f;
 	ConverSeq = NULL;
     NPC_Saver = NULL;
-    NPC_Sum = 0;
+    NPC_Sum = 1;
 }
 
 Model::~Model()
