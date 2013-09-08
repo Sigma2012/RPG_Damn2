@@ -104,6 +104,7 @@ void Controller::key_press(int key)
 
 void Controller::update_queue()
 {
+    //从这里以下是为了判断人物是否要产生移动，如果有的话
 	model->cha_num = 3-(cheche->Walking_Time_Tick/7);
 	switch (cheche->FacingDirection)
 	{
@@ -113,17 +114,37 @@ void Controller::update_queue()
 		case 4:model->cha_id = model->save[12+model->cha_num];break;
 		default:break;
 	}
-	model->Drawing_Queue.push(Image_Info(model->map_x, model->map_y,2,2,model->map_id));
-	model->Drawing_Queue.push(Image_Info(model->cha_x, model->cha_y,0.08f,0.145f,model->cha_id));
+    //从这里往下我们开始往贴图队列放置地图
+	{
+        model->Drawing_Queue.push(Image_Info(model->map_x, model->map_y,2,2,model->map_id));
+	}
+    //从这里往下我们开始往贴图队列放置玩家
+	{
+        model->Drawing_Queue.push(Image_Info(model->cha_x, model->cha_y,0.08f,0.145f,model->cha_id));
+	}
+    //从这里往下我们开始往贴图队列放置地图上的NPC
+	{
+        for (int i(0);i<model->NPC_Sum;++i)
+		{
+			if (model->NPC_Saver[i].Map_Belonging==model->map_num)
+			{
+				model->Drawing_Queue.push(Image_Info(model->NPC_Saver[i].pos.dx,model->NPC_Saver[i].pos.dy,0.08f,0.145f,model->NPC_Saver[i].Map_Drawing_Picture));
+			}
+		}
+        
+	}
+    
+    
+    //从这里往下我们开始往贴图队列放置对话，如果有的话
+	if ((model->ConverSeq!=NULL)&&(model->ConverSeq->Counter==model->ConverSeq->Conversation_Sequence.size()))
+	{
+		delete(model -> ConverSeq);
+		model->ConverSeq=NULL;
+	}
+	
 	if (model->ConverSeq!=NULL)
 	{
 		model->Drawing_Queue.push(Image_Info(0,0.5,1,0.5,model->ConverSeq->Conversation_Sequence[model->ConverSeq->Counter]));
-		model->ConverSeq->Counter++;
-		if (model->ConverSeq->Counter==model->ConverSeq->Conversation_Sequence.size())
-		{
-			delete(model-> ConverSeq);
-			model->ConverSeq=NULL;
-		}
 	}
 }	
 

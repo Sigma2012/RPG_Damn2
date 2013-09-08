@@ -7,7 +7,8 @@
 #define NPC_SUM 20
 using std::vector;
 using std::queue;
-//queue<int> Drawing_Queue; 
+//queue<int> Drawing_Queue;
+class NonPlayerCharacter;
 class Image_Info
 {
 	public:
@@ -48,6 +49,8 @@ public:
 	int Window_Status;					//标签，表明现在是出于一个什么样的状态，测试状态下这个为1
 	int cha_num;						//角色朝向标签
 	int save[16];
+    NonPlayerCharacter* NPC_Saver;      //指针，之后会指向一个存了NPC的数组
+    int NPC_Sum;
 	int map_id;
 	int cha_id;
 	private:
