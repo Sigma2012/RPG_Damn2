@@ -9,6 +9,11 @@ class Character:public Object
 		virtual void HittingEvent();
 		static Character* getInstance();
 		int Leg_Condition;
+		coordinate cha_pos;  			//战斗主角坐标
+		int attack_success;
+		int HP;
+		int MP;
+		
 	private:
 		static Character* instance_;
 		Character();
@@ -25,6 +30,7 @@ public:
 	void Battle_Begin();
 	int Map_Drawing_Picture;
 	int NPC_Type;						//标记NPC属于对话还是敌人还是空气墙
+	coordinate monster_pos;					//战斗怪物坐标
 	#define Normal_NPC		1
 	#define Fighting_NPC	2
 	#define Invisible_Wall	3

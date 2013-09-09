@@ -25,6 +25,7 @@ float Controller::Pos_Distance(float ax,float ay,float bx,float by)
 
 void Controller::key_press(int key)
 {
+	model->Last_Key = key;
     switch(model->Window_Status)
 	{
 		case MAIN_MENU_STATUS:			//从这里开始是主菜单的键盘响应界面
@@ -41,7 +42,7 @@ void Controller::key_press(int key)
                 case Qt::Key_Down:
 					cheche->FacingDirection = 3;
                     Virtual_y += 0.1f;
-                    break; 
+                     break; 
                 case Qt::Key_Right:
 					cheche->FacingDirection = 2;
                     Virtual_x += 0.1f;
@@ -63,20 +64,20 @@ void Controller::key_press(int key)
             if (!cheche->Leg_Condition)
             {
                 cheche->Leg_Condition = 1;
-                if (!cheche->Walking_Time_Tick) cheche->Walking_Time_Tick+=27;
+                 if (!cheche->Walking_Time_Tick) cheche->Walking_Time_Tick+=27;
             }
 #define Collision 0.01
 			bool flag_for_event=0;
 		    for (int i(0);i<model->NPC_Sum;++i)
 			{
-                float Distance = 10;
+                 float Distance = 10;
                 Distance=Pos_Distance(model->NPC_Saver[i].pos.dx,
-                                      model->NPC_Saver[i].pos.dy,
+                                       model->NPC_Saver[i].pos.dy,
                                       Virtual_x,
                                       Virtual_y);
                 if (Distance<Collision)//说明撞到了NPC
 				{
-					model->NPC_Saver[i].HittingEvent();
+			 		model->NPC_Saver[i].HittingEvent();
 					switch(model->NPC_Saver[i].NPC_Type)
 					{
 						case Normal_NPC:
@@ -86,11 +87,11 @@ void Controller::key_press(int key)
 						case Fighting_NPC:
 							model->Window_Status = FIGHTING_STATUS;
 							flag_for_event = 1;
-							break;
+			 				break;
 						case Invisible_Wall:
 
 							break;
-						default:break;
+			 			default:break;
 					}
 					break;
 				}
@@ -106,14 +107,14 @@ void Controller::key_press(int key)
                         model->map_y -= 0.1f;
                         model->cha_x = pos_trans_x(cheche->pos.dx);
                         model->cha_y = pos_trans_y(cheche->pos.dy);
-                        break;
+                         break;
                     case Qt::Key_Right:
                         cheche->FacingDirection = 2;
                         cheche->pos.dx += 0.1f;
                         model->map_x -= 0.1f;
                         model->cha_x = pos_trans_x(cheche->pos.dx);
                         model->cha_y = pos_trans_y(cheche->pos.dy);
-                        break;
+                         break;
                     case Qt::Key_Left:
                         cheche->FacingDirection = 4;
                         cheche->pos.dx -= 0.1f;
@@ -132,8 +133,8 @@ void Controller::key_press(int key)
                         model->Window_Status = CALLING_MENU_STATUS;
                         break;
                     default:
-                        break;
-                }
+                         break;
+                 }
             }
 		   break;
         }
@@ -151,6 +152,33 @@ void Controller::key_press(int key)
             }
             break;
         }
+
+		case FIGHTING_STATUS:
+		{	
+			switch(key)
+			{
+				case Qt::Key_A:
+						cheche->Walking_Time_Tick+=27;
+						cheche->attack_success=cheche->attack_success+2;
+					break;
+				case Qt::Key_B:
+						cheche->Walking_Time_Tick+=27;
+						cheche->attack_success=cheche->attack_success+4;
+						cheche->MP=cheche->MP-1;
+					break;
+				case Qt::Key_C:
+						cheche->Walking_Time_Tick+=27;
+						cheche->HP=cheche->HP+10;
+						cheche->MP=cheche->MP+5;
+					break;
+				default:
+					break;		
+
+			}
+			
+
+
+		}
 		case CALLING_MENU_STATUS:	//从这里开始是在游戏界面下按下菜单界面的键盘响应
         {
             
@@ -174,54 +202,78 @@ void Controller::key_press(int key)
 void Controller::update_queue()
 {
     //从这里以下是为了判断人物是否要产生移动，如果有的话
-	model->cha_num = 3-(cheche->Walking_Time_Tick/7);
-	switch (cheche->FacingDirection)
-	{
-		case 1:model->cha_id = model->save[0+model->cha_num];break;
-		case 2:model->cha_id = model->save[4+model->cha_num];break;
-		case 3:model->cha_id = model->save[8+model->cha_num];break;
-		case 4:model->cha_id = model->save[12+model->cha_num];break;
-		default:break;
-	}
-    //从这里往下我们开始往贴图队列放置地图
-	{
-        model->Drawing_Queue.push(Image_Info(model->map_x, model->map_y,2,2,model->map_id));
-	}
-    //从这里往下我们开始往贴图队列放置玩家
-	{
-        model->Drawing_Queue.push(Image_Info(model->cha_x, model->cha_y,0.08f,0.145f,model->cha_id));
-	}
-    //从这里往下我们开始往贴图队列放置地图上的NPC
-	{
-        for (int i(0);i<model->NPC_Sum;++i)
-		{
-			if (model->NPC_Saver[i].Map_Belonging==model->map_num)
+		model->cha_num = 3-(cheche->Walking_Time_Tick/7);
+		if(model->map_num==1)
+		{	
+			switch (cheche->FacingDirection)
+			{ 
+				case 1:model->cha_id = model->save[0+model->cha_num];break;
+				case 2:model->cha_id = model->save[4+model->cha_num];break;
+				case 3:model->cha_id = model->save[8+model->cha_num];break;
+				case 4:model->cha_id = model->save[12+model->cha_num];break;
+				default:break;
+			}
+			//从这里往下我们开始往贴图队列放置地图
 			{
-				model->Drawing_Queue.push(Image_Info(pos_trans_x(model->NPC_Saver[i].pos.dx),pos_trans_y(model->NPC_Saver[i].pos.dy),0.08f,0.145f,model->NPC_Saver[i].Map_Drawing_Picture));
+				model->Drawing_Queue.push(Image_Info(model->map_x, model->map_y,2,2,model->map_id[model->map_num]));
+			}
+			//从这里往下我们开始往贴图队列放置玩家
+			{
+				model->Drawing_Queue.push(Image_Info(model->cha_x, model->cha_y,0.08f,0.145f,model->cha_id));
+			}	
+			//从这里往下我们开始往贴图队列放置地图上的NPC
+			{
+				for (int i(0);i <model->NPC_Sum;++i)
+				{
+				if (model->NPC_Saver[i].Map_Belonging==model->map_num)
+					{  
+					model->Drawing_Queue.push(Image_Info(pos_trans_x(model->NPC_Saver[i].pos.dx),pos_trans_y(model->NPC_Saver[i].pos.dy),0.08f,0.145f,model->NPC_Saver[i].Map_Drawing_Picture));
+				 	}	
+				} 
+        
+			}	
+    
+    
+			//从这里往下我们开始往贴图队列放置对话，如果有的话
+			if ((model->ConverSeq!=NULL)&&(model->ConverSeq->Counter==model->ConverSeq->Conversation_Sequence.size()))
+			{
+				delete(model -> ConverSeq);
+				model->ConverSeq=NULL;
+				model->Window_Status = MAIN_GAME_STATUS;
+			}	
+	
+			if (model->ConverSeq!=NULL)
+			{
+				model->Drawing_Queue.push(Image_Info(0,0.5,1,0.5,model->ConverSeq->Conversation_Sequence[model->ConverSeq->Counter]));
 			}
 		}
-        
-	}
-    
-    
-    //从这里往下我们开始往贴图队列放置对话，如果有的话
-	if ((model->ConverSeq!=NULL)&&(model->ConverSeq->Counter==model->ConverSeq->Conversation_Sequence.size()))
-	{
-		delete(model -> ConverSeq);
-		model->ConverSeq=NULL;
-		model->Window_Status = MAIN_GAME_STATUS;
-	}
+
+		if(model->map_num==2)
+		{
+			if(model->Last_Key==Qt::Key_A)model->cha_fight_id = model->save[16+model->cha_num];
+			if(model->Last_Key==Qt::Key_B)model->cha_fight_id = model->save[20+model->cha_num];
+			else if(model->Last_Key==Qt::Key_C)model->cha_fight_id = model->save[24+model->cha_num];
 	
-	if (model->ConverSeq!=NULL)
-	{
-		model->Drawing_Queue.push(Image_Info(0,0.5,1,0.5,model->ConverSeq->Conversation_Sequence[model->ConverSeq->Counter]));
-	}
+			model->Drawing_Queue.push(Image_Info(0.0f, 0.0f,1,1,model->map_id[model->map_num]));
+			if(model->Last_Key==Qt::Key_A)
+			{
+		 		if(model->cha_num == 0||model->cha_num==4)model->Drawing_Queue.push(Image_Info (0.25,0.25,0.08f,0.145f,model->cha_fight_id));
+				else model->Drawing_Queue.push(Image_Info(0.75,0.75,0.08f,0.145f,model->cha_fight_id));
+			}
+			else model->Drawing_Queue.push(Image_Info(0.25,0.25,0.08f,0.145f,model->cha_fight_id));
+/*			if(cheche->Walking_Time_Tick==0||cheche->attack_success>=monster->HP)//请家豪把怪物“搞”出来
+			{
+ 				model->map_num=1;   //转回大地图
+			 	cheche->attack_success=0;//战斗伤害清零
+
+			} 
+*/		}
 }	
 
 float Controller::pos_trans_x(float x)
 {
 	return model->map_x + x;
-	}
+	} 
 
 float Controller::pos_trans_y(float y)
 {

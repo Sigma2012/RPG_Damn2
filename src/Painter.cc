@@ -20,26 +20,44 @@ Painter::~Painter()
 void Painter::paint()
 {
 	ctrl->update_queue();
-	//修改地图坐标由model和cotroller共同控制
-    if (cheche->Leg_Condition)
-		if (cheche->Walking_Time_Tick>0)
-			cheche->Walking_Time_Tick--;
-	if (cheche->Walking_Time_Tick % 14 == 0)
-		cheche->Leg_Condition = 0;
-	while (!model->Drawing_Queue.empty())
+	// 修改地图坐标由model和cotroller共同控制
+	switch(model->map_num)
 	{
-		fillImage(model->Drawing_Queue.front().Up_x,
+	case 1:
+	
+		{
+ 			if (cheche->Leg_Condition)
+			if (cheche->Walking_Time_Tick>0)
+				cheche->Walking_Time_Tick--;
+			if (cheche->Walking_Time_Tick % 14 == 0)
+				cheche->Leg_Condition = 0;
+		 	break;
+		} 
+	
+	case 2:
+ 		{	
+			if (cheche->Walking_Time_Tick>0)
+				cheche->Walking_Time_Tick--;
+		 	 	break;
+		
+		}
+	
+		default:
+		break; 
+	}
+  			while (!model->Drawing_Queue .empty())
+			{
+				fillImage(model->Drawing_Queue.front().Up_x,
 				model->Drawing_Queue.front().Up_y,
 				model->Drawing_Queue.front().Size_x,
 				model->Drawing_Queue.front().Size_y,
 				model->Drawing_Queue.front().Image_ID);
-		model->Drawing_Queue.pop();
-	}
+		  		model->Drawing_Queue.pop();
+		  	}	
 }
 
 void Painter::init()
 {
-	freopen("Here.txt","w",stdout);
 	
 	model->save[0]=loadImage("F1.png");
 	model->save[1]=loadImage("F2.png");
@@ -56,9 +74,26 @@ void Painter::init()
 	model->save[12]=loadImage("L1.png");
 	model->save[13]=loadImage("L2.png");
 	model->save[14]=loadImage("L3.png");
-	model->save[15]=loadImage("L4.png");
-    //初始大地图ID
-    model->map_num = -1;
+	model ->save[15]=loadImage("L4.png");
+//	model->save[16]=loadImage("A1.png");
+//	model->save[17]=loadImage("A2.png");
+//	model->save[18]=loadImage("A3.png");
+//	model->save[19]=loadImage("A4.png");
+//	model->save[20]=loadImage("B1.png");
+//	model->save[21]=loadImage("B2.png");
+//	model->save[22]=loadImage("B3.png");
+//	model->save[23]=loadImage("B4.png");
+//	model->save[24]=loadImage("C1.png");
+//	model->save[25]=loadImage("C2.png");
+//	model->save[26]=loadImage("C3.png");
+//	model->save[27]=loadImage("C4.png");
+//	model->map_id[0]=loadImage("main.png");
+	model->map_id[1]=loadImage("main_scene.png");
+//	model->map_id[2]=loadImage("fight_scene.png");
+//	model->map_id[3]=loadImage("a.png");
+//	model->map_id[4]=loadImage("b.png");
+    //初始大地图ID 
+    model->map_num =1;
     model->Window_Status=MAIN_GAME_STATUS;
     //大地图贴图初始坐标
 	model->map_x = -0.5f;
@@ -81,5 +116,4 @@ void Painter::init()
 		model->cha_id = model->save[8];
 	else if(cheche->FacingDirection == 4)
 		model->cha_id = model->save[12];
-	model->map_id = loadImage("scene.png");
 }

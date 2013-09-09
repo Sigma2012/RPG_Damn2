@@ -8,10 +8,15 @@ Character::Character()
     //主角坐标初始化
 	pos.dx = 1.0f;
 	pos.dy = 1.0f;
+	cha_pos.dx = 0.75f;		//战斗界面主角坐标
+	cha_pos.dy = 0.75f;		//初始化
 	///////////////////////
 	Walking_Time_Tick = 0;
+	attack_success = 0;           //判断主角是否攻击胜利 
 	FacingDirection =FACING_DOWN;
 	Radius = 5.0;
+	HP=20;
+	MP=10;
 }
 void Character::HittingEvent()
 {
@@ -34,13 +39,17 @@ NonPlayerCharacter::NonPlayerCharacter()
 {
     model = Model::getInstance();
     Map_Belonging = 1;
+    monster_pos.dx = 0.25f;
+    monster_pos.dy = 0.25f;
 }
 NonPlayerCharacter::~NonPlayerCharacter()
 {
     
 }
 void NonPlayerCharacter::Battle_Begin()
-{
+{	
+	model->map_num = 1;// 战斗界面
+		
 
 }
 void NonPlayerCharacter::Dialog_Begin()
@@ -58,7 +67,7 @@ void NonPlayerCharacter::HittingEvent()
 				Dialog_Begin();
 			break;
 		case Fighting_NPC:
-
+				Battle_Begin();
 			break;
 		case Invisible_Wall:
 
