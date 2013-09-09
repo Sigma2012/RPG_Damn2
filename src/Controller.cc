@@ -81,6 +81,7 @@ void Controller::key_press(int key)
                     break;
                 case Qt::Key_Escape:
                     model->Window_Status = CALLING_MENU_STATUS;
+					model->map_num = 7;
                     break;
                 default: 
                     break;
@@ -210,14 +211,17 @@ void Controller::key_press(int key)
             {
                 case Qt::Key_Escape:
                     model->Window_Status = MAIN_GAME_STATUS;
+					model->map_num = 1;
                     break;
 				case Qt::Key_Down:
 					model->callmenu_num = (model->callmenu_num + 1) % 3;
 					model->callmenu_id = model->map_id[model->callmenu_num + 7];
+					model->map_num = model->callmenu_num + 7;
 					break;
 				case Qt::Key_Up:
 					model->callmenu_num = (model->callmenu_num + 2) % 3;
 					model->callmenu_id = model->map_id[model->callmenu_num + 7];
+					model->map_num = model->callmenu_num + 7;
 					break;
 				case Qt::Key_Return:
 					switch(model->callmenu_num)
@@ -296,7 +300,7 @@ void Controller::update_queue()
 			break;
 		}
 		case CALLING_MENU_STATUS:
-			model->Drawing_Queue.push(Image_Info(0.0f, 0.0f, 1.0f, 1.0f, model->callmenu_id));
+			model->Drawing_Queue.push(Image_Info(0.0f, 0.0f, 1.0f, 1.0f, model->map_id[model->map_num]));
 			break;
 		case FIGHTING_STATUS:
 		{
