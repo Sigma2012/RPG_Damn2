@@ -70,6 +70,7 @@ void Painter::init()
 	model->NPC_Saver[0].Dialog_Sequence.push_back(loadImage("TD1.png"));
 	model->NPC_Saver[0].pos.dx=1.5;
 	model->NPC_Saver[0].pos.dy=1.5;
+	model->NPC_Saver[0].NPC_Type=1;
 	//以下代码段不知道可不可以删除
     if(cheche->FacingDirection == 1)
 		model->cha_id = model->save[0];

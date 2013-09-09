@@ -39,10 +39,28 @@ NonPlayerCharacter::~NonPlayerCharacter()
 {
     
 }
+void NonPlayerCharacter::Dialog_Begin()
+{
+	model->ConverSeq = new(Conversation_Information);
+	for (int i(0);i<Dialog_Sequence.size();++i)
+		model->ConverSeq->Conversation_Sequence.push_back(Dialog_Sequence[i]);
+	model->ConverSeq->Counter = 0;
+}
 void NonPlayerCharacter::HittingEvent()
 {
-    model->ConverSeq = new(Conversation_Information);
-    for (int i(0);i<Dialog_Sequence.size();++i)
-        model->ConverSeq->Conversation_Sequence.push_back(Dialog_Sequence[i]);
-    model->ConverSeq->Counter = 0;
+	switch(NPC_Type)
+	{
+		case Normal_NPC:
+				Dialog_Begin();
+			break;
+		case Fighting_NPC:
+
+			break;
+		case Invisible_Wall:
+
+			break;
+		default:
+			break;	
+	}
 }
+
