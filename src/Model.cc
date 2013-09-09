@@ -10,6 +10,9 @@ Model::Model()
 	ConverSeq = NULL;
     NPC_Saver = NULL;
     NPC_Sum = 1;
+	sta_num = 0;
+	Window_Status = MAIN_MENU_STATUS;
+	map_num = 3;
 }
 
 Model::~Model()

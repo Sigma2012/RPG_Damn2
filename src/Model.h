@@ -51,12 +51,14 @@ public:
 	Conversation_Information* ConverSeq;
 	int map_num;						//地图标签,测试状态下地图标签为-1
 	int Window_Status;					//标签，表明现在是出于一个什么样的状态，测试状态下这个为1
-	int cha_num;						//大地图贴图判断标签
+	int cha_num;						//主角贴图判断标签
 	int fight_num;						//战斗地图贴图判断标签	
 	int save[100];
     NonPlayerCharacter* NPC_Saver;      //指针，之后会指向一个存了NPC的数组
     int NPC_Sum;
 	int map_id[20];
+	int sta_num;                        //开始界面标签
+	int sta_id;
 	int cha_id;
 	int cha_fight_id;					//战斗界面的主角贴图标签
 	int Last_Key;

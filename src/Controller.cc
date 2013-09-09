@@ -30,9 +30,33 @@ void Controller::key_press(int key)
 	{
 		case MAIN_MENU_STATUS:			//从这里开始是主菜单的键盘响应界面
         {
-            
-            
-            break;
+			switch(key)
+			{
+				case Qt::Key_Down:
+					model->sta_num = (model->sta_num + 1) % 4;
+					model->sta_id = model->map_id[model->sta_num + 3];
+					break;
+				case Qt::Key_Up:
+					model->sta_num = (model->sta_num + 3) % 4;
+					model->sta_id = model->map_id[model->sta_num + 3];
+					break;
+				case Qt::Key_Return:
+					switch(model->sta_num)
+					{
+						case 0:
+						case 1:
+							model->Window_Status = MAIN_GAME_STATUS;
+							model->map_num = 1;
+							break;
+						case 2:break;
+						case 3:
+							break;
+						}
+					break;
+				default:
+					break;
+			}
+			break;
 		}
         case MAIN_GAME_STATUS:			//从这里开始是主要游戏界面的响应
         {
@@ -136,7 +160,7 @@ void Controller::key_press(int key)
                          break;
                  }
             }
-		   break;
+			break;
         }
 		case DIALOGUE_STATUS:		//从这里开始是和NPC进行对话的状态下的键盘响应
 		{
@@ -175,7 +199,7 @@ void Controller::key_press(int key)
 					break;		
 
 			}
-			
+			break;	
 
 
 		}
@@ -200,11 +224,17 @@ void Controller::key_press(int key)
 }
 
 void Controller::update_queue()
-{
-    //从这里以下是为了判断人物是否要产生移动，如果有的话
-		model->cha_num = 3-(cheche->Walking_Time_Tick/7);
-		if(model->map_num==1)
-		{	
+{	
+	switch(model->Window_Status)
+	{
+		case MAIN_MENU_STATUS:
+			model->Drawing_Queue.push(Image_Info(0.0f, 0.0f, 1.0f, 1.0f, model->sta_id));
+			break;
+		case MAIN_GAME_STATUS:
+		case DIALOGUE_STATUS:
+		{
+			//从这里以下是为了判断人物是否要产生移动，如果有的话  
+			model->cha_num = 3-(cheche->Walking_Time_Tick/7);
 			switch (cheche->FacingDirection)
 			{ 
 				case 1:model->cha_id = model->save[0+model->cha_num];break;
@@ -246,9 +276,10 @@ void Controller::update_queue()
 			{
 				model->Drawing_Queue.push(Image_Info(0,0.5,1,0.5,model->ConverSeq->Conversation_Sequence[model->ConverSeq->Counter]));
 			}
+			break;
 		}
 
-		if(model->map_num==2)
+		case FIGHTING_STATUS:
 		{
 			if(model->Last_Key==Qt::Key_A)model->cha_fight_id = model->save[16+model->cha_num];
 			if(model->Last_Key==Qt::Key_B)model->cha_fight_id = model->save[20+model->cha_num];
@@ -264,10 +295,15 @@ void Controller::update_queue()
 /*			if(cheche->Walking_Time_Tick==0||cheche->attack_success>=monster->HP)//请家豪把怪物“搞”出来
 			{
  				model->map_num=1;   //转回大地图
-			 	cheche->attack_success=0;//战斗伤害清零
+	 		 	cheche->attack_success=0;//战斗伤害清零
 
-			} 
-*/		}
+	 		} */
+			break;
+		}
+		
+		case CALLING_MENU_STATUS:
+			break;
+	}
 }	
 
 float Controller::pos_trans_x(float x)

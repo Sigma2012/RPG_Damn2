@@ -90,22 +90,24 @@ void Painter::init()
 //	model->map_id[0]=loadImage("main.png");
 	model->map_id[1]=loadImage("main_scene.png");
 //	model->map_id[2]=loadImage("fight_scene.png");
-//	model->map_id[3]=loadImage("a.png");
-//	model->map_id[4]=loadImage("b.png");
+	model->map_id[3]=loadImage("Start0.png");
+ 	model->map_id[4]=loadImage("Start1.png");
+	model->map_id[5]=loadImage("Start2.png");
+	model->map_id[6]=loadImage("Start3.png");
     //初始大地图ID 
     model->map_num =1;
-    model->Window_Status=MAIN_GAME_STATUS;
+	model->sta_id = model->map_id[3];
     //大地图贴图初始坐标
 	model->map_x = -0.5f;
 	model->map_y = -0.5f;
 	//NPC初始化序列
     model->NPC_Saver = &Container[0]; 
 	//以下开始读入NPC
-    model->NPC_Saver[0].Map_Belonging = -1;	
+    model->NPC_Saver[0].Map_Belonging = 1;	
 	model->NPC_Saver[0].Map_Drawing_Picture =loadImage("NPC_0.png");
 	model->NPC_Saver[0].Dialog_Sequence.push_back(loadImage("TD1.png"));
-	model->NPC_Saver[0].pos.dx=1.5;
-	model->NPC_Saver[0].pos.dy=1.5;
+	model->NPC_Saver[0].pos.dx=0.8;
+	model->NPC_Saver[0].pos.dy=0.8;
 	model->NPC_Saver[0].NPC_Type=1;
 	//以下代码段不知道可不可以删除
     if(cheche->FacingDirection == 1)
