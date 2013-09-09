@@ -87,13 +87,16 @@ void Painter::init()
 //	model->save[25]=loadImage("C2.png");
 //	model->save[26]=loadImage("C3.png");
 //	model->save[27]=loadImage("C4.png");
-//	model->map_id[0]=loadImage("main.png");
+//	model->map_id[0]=loadImage("loading.png");
 	model->map_id[1]=loadImage("main_scene.png");
 //	model->map_id[2]=loadImage("fight_scene.png");
 	model->map_id[3]=loadImage("Start0.png");
  	model->map_id[4]=loadImage("Start1.png");
 	model->map_id[5]=loadImage("Start2.png");
 	model->map_id[6]=loadImage("Start3.png");
+	model->map_id[7]=loadImage("callingmenu0.png");
+	model->map_id[8]=loadImage("callingmenu1.png");
+	model->map_id[9]=loadImage("callingmenu2.png");
     //初始大地图ID 
     model->map_num =1;
 	model->sta_id = model->map_id[3];

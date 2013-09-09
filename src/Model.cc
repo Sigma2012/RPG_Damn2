@@ -13,6 +13,7 @@ Model::Model()
 	sta_num = 0;
 	Window_Status = MAIN_MENU_STATUS;
 	map_num = 3;
+	callmenu_num = 0;
 }
 
 Model::~Model()

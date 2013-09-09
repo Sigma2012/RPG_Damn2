@@ -59,6 +59,8 @@ public:
 	int map_id[20];
 	int sta_num;                        //开始界面标签
 	int sta_id;
+	int callmenu_num;					//呼出菜单标签
+	int callmenu_id;
 	int cha_id;
 	int cha_fight_id;					//战斗界面的主角贴图标签
 	int Last_Key;

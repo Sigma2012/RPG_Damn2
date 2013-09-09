@@ -47,16 +47,16 @@ void Controller::key_press(int key)
 						case 1:
 							model->Window_Status = MAIN_GAME_STATUS;
 							model->map_num = 1;
-							break;
+				  			break;
 						case 2:break;
 						case 3:
 							break;
-						}
-					break;
+				 		}
+				 	break;
 				default:
-					break;
+				 	break;
 			}
-			break;
+			break; 
 		}
         case MAIN_GAME_STATUS:			//从这里开始是主要游戏界面的响应
         {
@@ -210,8 +210,25 @@ void Controller::key_press(int key)
             {
                 case Qt::Key_Escape:
                     model->Window_Status = MAIN_GAME_STATUS;
-                    
                     break;
+				case Qt::Key_Down:
+					model->callmenu_num = (model->callmenu_num + 1) % 3;
+					model->callmenu_id = model->map_id[model->callmenu_num + 7];
+					break;
+				case Qt::Key_Up:
+					model->callmenu_num = (model->callmenu_num + 2) % 3;
+					model->callmenu_id = model->map_id[model->callmenu_num + 7];
+					break;
+				case Qt::Key_Return:
+					switch(model->callmenu_num)
+					{
+						case 0:
+						case 1:break;
+						case 2:
+							/*QTexit();*/
+							break;
+						}
+					break;	
                 default:
                     break;
                     
@@ -229,7 +246,7 @@ void Controller::update_queue()
 	{
 		case MAIN_MENU_STATUS:
 			model->Drawing_Queue.push(Image_Info(0.0f, 0.0f, 1.0f, 1.0f, model->sta_id));
-			break;
+			 break;
 		case MAIN_GAME_STATUS:
 		case DIALOGUE_STATUS:
 		{
@@ -278,7 +295,9 @@ void Controller::update_queue()
 			}
 			break;
 		}
-
+		case CALLING_MENU_STATUS:
+			model->Drawing_Queue.push(Image_Info(0.0f, 0.0f, 1.0f, 1.0f, model->callmenu_id));
+			break;
 		case FIGHTING_STATUS:
 		{
 			if(model->Last_Key==Qt::Key_A)model->cha_fight_id = model->save[16+model->cha_num];
@@ -301,8 +320,6 @@ void Controller::update_queue()
 			break;
 		}
 		
-		case CALLING_MENU_STATUS:
-			break;
 	}
 }	
 
