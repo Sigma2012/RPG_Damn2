@@ -39,7 +39,8 @@ void Painter::paint()
 
 void Painter::init()
 {
-
+	freopen("Here.txt","w",stdout);
+	
 	model->save[0]=loadImage("F1.png");
 	model->save[1]=loadImage("F2.png");
 	model->save[2]=loadImage("F3.png");

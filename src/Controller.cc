@@ -77,10 +77,20 @@ void Controller::key_press(int key)
                 if (Distance<Collision)//说明撞到了NPC
 				{
 					model->NPC_Saver[i].HittingEvent();
-					if (model->NPC_Saver[i].NPC_Type!=3)
-					{	
-						flag_for_event = 1;
-						model->Window_Status=DIALOGUE_STATUS;
+					switch(model->NPC_Saver[i].NPC_Type)
+					{
+						case Normal_NPC:
+							model->Window_Status = DIALOGUE_STATUS;
+							flag_for_event = 1;
+							break;
+						case Fighting_NPC:
+							model->Window_Status = FIGHTING_STATUS;
+							flag_for_event = 1;
+							break;
+						case Invisible_Wall:
+
+							break;
+						default:break;
 					}
 					break;
 				}

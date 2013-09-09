@@ -39,6 +39,10 @@ NonPlayerCharacter::~NonPlayerCharacter()
 {
     
 }
+void NonPlayerCharacter::Battle_Begin()
+{
+
+}
 void NonPlayerCharacter::Dialog_Begin()
 {
 	model->ConverSeq = new(Conversation_Information);

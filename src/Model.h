@@ -4,6 +4,7 @@
 #define MAIN_GAME_STATUS	2
 #define DIALOGUE_STATUS		3
 #define CALLING_MENU_STATUS 4
+#define FIGHTING_STATUS		5
 #define NPC_SUM 20
 using std::vector;
 using std::queue;
