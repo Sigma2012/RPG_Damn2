@@ -239,7 +239,7 @@ void Controller::key_press(int key)
             }
             break;
 		}
-		case EVENT_STATUS:
+		case EVENT_STATUS:			//我们在这里触发了事件
 		{
 			switch(key)
 			{
