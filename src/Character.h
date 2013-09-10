@@ -17,7 +17,6 @@ class Character:public Object
 	private:
 		static Character* instance_;
 		Character();
-		Character* cheche;
 };
 #include <vector>
 using std::vector;
@@ -44,5 +43,5 @@ public:
     ~NonPlayerCharacter();
 private:
     Model* model;
-	Character* cheche; 
+    Character* cheche;
 };

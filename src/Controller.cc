@@ -94,16 +94,14 @@ void Controller::key_press(int key)
             }
 #define Collision 0.07
 			bool flag_for_event=0;
-			//freopen("Haha.txt","w",stdout);
 		    for (int i(0);i<model->NPC_Sum;++i)
 			{
-				if ((model->NPC_Saver[i].Map_Belonging < -50)||(model->NPC_Saver[i].Map_Belonging!=model->map_num)) continue;
+				if (model->NPC_Saver[i].Map_Belonging < -50) continue;
                  float Distance = 10;
                 Distance=Pos_Distance(model->NPC_Saver[i].pos.dx,
                                        model->NPC_Saver[i].pos.dy,
                                       Virtual_x,
                                       Virtual_y);
-				//printf("%d %f %f %f\n",i,model->NPC_Saver[i].pos.dx,model->NPC_Saver[i].pos.dy,Distance);
                 if (Distance<Collision)//说明撞到了NPC
 				{
 			 		model->NPC_Saver[i].HittingEvent();
@@ -125,7 +123,6 @@ void Controller::key_press(int key)
 					break; 
 				}
 			}
-			//fclose(stdout);
             //说明我们没有撞到NPC，按照正常的方法去更新整个地图
 			if (!flag_for_event)
 			{

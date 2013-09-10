@@ -139,8 +139,8 @@ void Painter::init()
 	model->NPC_Saver[1].pos.dy= 2.5;
 	model->NPC_Saver[1].NPC_Type = Trans_Former;
 	model->NPC_Saver[1].To_Map_Num = 10;
-	model->NPC_Saver[1].Tr_x=0.5;
-	model->NPC_Saver[1].Tr_y=0.5;	
+	model->NPC_Saver[1].Tr_x=3.0;
+	model->NPC_Saver[1].Tr_y=3.0;	
 	model->NPC_Saver[1].Tr_ma_x=-2.5;
 	model->NPC_Saver[1].Tr_ma_y=-2.5;	
 	//以下用来设置对话用NPC

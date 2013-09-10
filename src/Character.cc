@@ -1,4 +1,5 @@
 #include "Character.h"
+#include "Controller.h"
 #include "Model.h"
 #define NULL 0
 Character * Character::instance_ = NULL;
@@ -38,7 +39,8 @@ Character* Character::getInstance()
 NonPlayerCharacter::NonPlayerCharacter()
 {
     model = Model::getInstance();
-    Map_Belonging = 1;
+    cheche = Character::getInstance();
+	Map_Belonging = 1;
     monster_pos.dx = 0.25f;
     monster_pos.dy = 0.25f;
 }
@@ -66,8 +68,8 @@ void NonPlayerCharacter::Transf_Begin()
 	model->map_y = Tr_ma_y;
 	//model->cha_x = Tr_x;
 	//model->cha_y = Tr_y;
-	//cheche->pos.dx = Tr_x;
-	//cheche->pos.dy = Tr_y;
+	cheche->pos.dx = Tr_x;
+	cheche->pos.dy = Tr_y;
 }
 void NonPlayerCharacter::HittingEvent()
 {
