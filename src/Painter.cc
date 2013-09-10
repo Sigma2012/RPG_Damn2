@@ -3,7 +3,7 @@
 #include "Character.h"
 #include "Controller.h"
 
-NonPlayerCharacter Container[20];
+NonPlayerCharacter Container[220];
 Painter::Painter(paint_func &func)
 {
 	this->fillImage = func.fillImage;
@@ -89,7 +89,7 @@ void Painter::init()
 //	model->save[27]=loadImage("C4.png");
 //	model->map_id[0]=loadImage("loading.png");
 	model->map_id[1]=loadImage("main_scene.png");
-//	model->map_id[2]=loadImage("fight_scene.png");
+//	model->map_id[2]=loadImage("fight_scene.png")i;
 	model->map_id[3]=loadImage("Start0.png");
  	model->map_id[4]=loadImage("Start1.png");
 	model->map_id[5]=loadImage("Start2.png");
@@ -98,9 +98,13 @@ void Painter::init()
 	model->map_id[8]=loadImage("callingmenu1.png");
 	model->map_id[9]=loadImage("callingmenu2.png");
     //初始大地图ID 
+
+	
     model->map_num =1;
 	model->sta_id = model->map_id[3];
     //初始化地图下的各种信息。。。
+	
+	
 	//1号地图是我们的大地图
 	model->MapSaver[1].lx = 6;
 	model->MapSaver[1].ly = 6;
@@ -112,7 +116,20 @@ void Painter::init()
 	//NPC初始化序列
     model->NPC_Saver = &Container[0]; 
 	//以下开始读入NPC
-    model->NPC_Saver[0].Map_Belonging = 1;	
+    freopen("Iwall.txt","r",stdin);
+	for (int i(0);i<model->NPC_Sum;++i) model->NPC_Saver[i].Map_Belonging=-100;
+	for (int i(0);i<53;++i)
+	{
+		float a,b;
+		model->NPC_Saver[219-i].Map_Belonging = 1;
+		model->NPC_Saver[219-i].NPC_Type = 1+2;
+		model->NPC_Saver[219-i].Map_Drawing_Picture = loadImage("iwall.png");
+		scanf("%f %f",&a,&b);
+		model->NPC_Saver[219-i].pos.dx=a/2480*6;
+		model->NPC_Saver[219-i].pos.dy=b/1920*6;
+	}
+	fclose(stdin);
+	model->NPC_Saver[0].Map_Belonging = 1;	
 	model->NPC_Saver[0].Map_Drawing_Picture =loadImage("NPC_0.png");
 	model->NPC_Saver[0].Dialog_Sequence.push_back(loadImage("TD1.png"));
 	model->NPC_Saver[0].pos.dx=0.8;

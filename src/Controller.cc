@@ -96,6 +96,7 @@ void Controller::key_press(int key)
 			bool flag_for_event=0;
 		    for (int i(0);i<model->NPC_Sum;++i)
 			{
+				if (NPC_Sum[i].Map_Belonging < -50) continue;
                  float Distance = 10;
                 Distance=Pos_Distance(model->NPC_Saver[i].pos.dx,
                                        model->NPC_Saver[i].pos.dy,
