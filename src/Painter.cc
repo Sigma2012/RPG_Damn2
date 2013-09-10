@@ -97,6 +97,7 @@ void Painter::init()
 	model->map_id[7]=loadImage("callingmenu0.png");
 	model->map_id[8]=loadImage("callingmenu1.png");
 	model->map_id[9]=loadImage("callingmenu2.png");
+	model->map_id[10]=loadImage("main_scene1.png");
     //初始大地图ID 
 
 	
@@ -116,7 +117,7 @@ void Painter::init()
 	//NPC初始化序列
     model->NPC_Saver = &Container[0]; 
 	//以下开始读入NPC
-	
+	//以下用来读入空气墙	
     freopen("Iwall.txt","r",stdin);
 	for (int i(0);i<model->NPC_Sum;++i) model->NPC_Saver[i].Map_Belonging=-100;
 	
@@ -131,7 +132,18 @@ void Painter::init()
 		model->NPC_Saver[219-i].pos.dy=b/1920*6;
 	}
 	fclose(stdin);
-
+	//以下用来设置传送用NPC
+	model->NPC_Saver[1].Map_Belonging = 1;
+	model->NPC_Saver[1].Map_Drawing_Picture =loadImage("iwall.png");
+	model->NPC_Saver[1].pos.dx= 2.4;
+	model->NPC_Saver[1].pos.dy= 2.5;
+	model->NPC_Saver[1].NPC_Type = Trans_Former;
+	model->NPC_Saver[1].To_Map_Num = 10;
+	model->NPC_Saver[1].Tr_x=0.5;
+	model->NPC_Saver[1].Tr_y=0.5;	
+	model->NPC_Saver[1].Tr_ma_x=-2.5;
+	model->NPC_Saver[1].Tr_ma_y=-2.5;	
+	//以下用来设置对话用NPC
 	model->NPC_Saver[0].Map_Belonging = 1;	
 	model->NPC_Saver[0].Map_Drawing_Picture =loadImage("NPC_0.png");
 	model->NPC_Saver[0].Dialog_Sequence.push_back(loadImage("TD1.png"));

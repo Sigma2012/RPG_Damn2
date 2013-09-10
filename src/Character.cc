@@ -59,6 +59,16 @@ void NonPlayerCharacter::Dialog_Begin()
 		model->ConverSeq->Conversation_Sequence.push_back(Dialog_Sequence[i]);
 	model->ConverSeq->Counter = 0;
 }
+void NonPlayerCharacter::Transf_Begin()
+{
+	model->map_num =  To_Map_Num;
+	model->map_x = Tr_ma_x;
+	model->map_y = Tr_ma_y;
+	//model->cha_x = Tr_x;
+	//model->cha_y = Tr_y;
+	//cheche->pos.dx = Tr_x;
+	//cheche->pos.dy = Tr_y;
+}
 void NonPlayerCharacter::HittingEvent()
 {
 	switch(NPC_Type)
@@ -71,6 +81,9 @@ void NonPlayerCharacter::HittingEvent()
 			break;
 		case Invisible_Wall:
 
+			break;
+		case Trans_Former:
+			Transf_Begin();
 			break;
 		default:
 			break;	

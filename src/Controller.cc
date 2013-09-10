@@ -97,7 +97,7 @@ void Controller::key_press(int key)
 			//freopen("Haha.txt","w",stdout);
 		    for (int i(0);i<model->NPC_Sum;++i)
 			{
-				if (model->NPC_Saver[i].Map_Belonging < -50) continue;
+				if ((model->NPC_Saver[i].Map_Belonging < -50)||(model->NPC_Saver[i].Map_Belonging!=model->map_num)) continue;
                  float Distance = 10;
                 Distance=Pos_Distance(model->NPC_Saver[i].pos.dx,
                                        model->NPC_Saver[i].pos.dy,
