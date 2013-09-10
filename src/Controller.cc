@@ -92,16 +92,18 @@ void Controller::key_press(int key)
                 cheche->Leg_Condition = 1;
                  if (!cheche->Walking_Time_Tick) cheche->Walking_Time_Tick+=27;
             }
-#define Collision 0.01
+#define Collision 0.07
 			bool flag_for_event=0;
+			//freopen("Haha.txt","w",stdout);
 		    for (int i(0);i<model->NPC_Sum;++i)
 			{
-				if (NPC_Sum[i].Map_Belonging < -50) continue;
+				if (model->NPC_Saver[i].Map_Belonging < -50) continue;
                  float Distance = 10;
                 Distance=Pos_Distance(model->NPC_Saver[i].pos.dx,
                                        model->NPC_Saver[i].pos.dy,
                                       Virtual_x,
                                       Virtual_y);
+				//printf("%d %f %f %f\n",i,model->NPC_Saver[i].pos.dx,model->NPC_Saver[i].pos.dy,Distance);
                 if (Distance<Collision)//说明撞到了NPC
 				{
 			 		model->NPC_Saver[i].HittingEvent();
@@ -116,13 +118,14 @@ void Controller::key_press(int key)
 							flag_for_event = 1;
 			 				break;
 						case Invisible_Wall:
-
+							flag_for_event = 1;
 							break;
 			 			default:break;
 					}
-					break;
+					break; 
 				}
 			}
+			//fclose(stdout);
             //说明我们没有撞到NPC，按照正常的方法去更新整个地图
 			if (!flag_for_event)
 			{
@@ -289,8 +292,9 @@ void Controller::update_queue()
 			{
 				for (int i(0);i <model->NPC_Sum;++i)
 				{
-				if (model->NPC_Saver[i].Map_Belonging==model->map_num)
-					{  
+					if (model->NPC_Saver[i].Map_Belonging<-50) continue;
+					if (model->NPC_Saver[i].Map_Belonging==model->map_num)
+					{
 					model->Drawing_Queue.push(Image_Info(pos_trans_x(model->NPC_Saver[i].pos.dx),pos_trans_y(model->NPC_Saver[i].pos.dy),0.08f,0.145f,model->NPC_Saver[i].Map_Drawing_Picture));
 				 	}	
 				} 

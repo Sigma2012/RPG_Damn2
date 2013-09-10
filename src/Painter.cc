@@ -111,14 +111,16 @@ void Painter::init()
 	model->MapSaver[1].map_num_for_this = 1;
 	model->MapSaver[1].map_id = model->map_id[1];
 	//大地图贴图初始坐标
-	model->map_x = -0.5f;
-	model->map_y = -0.5f;
+	model->map_x = -2.5f;
+	model->map_y = -2.5f;
 	//NPC初始化序列
     model->NPC_Saver = &Container[0]; 
 	//以下开始读入NPC
+	
     freopen("Iwall.txt","r",stdin);
 	for (int i(0);i<model->NPC_Sum;++i) model->NPC_Saver[i].Map_Belonging=-100;
-	for (int i(0);i<53;++i)
+	
+	for (int i(0);i<116;++i)
 	{
 		float a,b;
 		model->NPC_Saver[219-i].Map_Belonging = 1;
@@ -129,11 +131,12 @@ void Painter::init()
 		model->NPC_Saver[219-i].pos.dy=b/1920*6;
 	}
 	fclose(stdin);
+
 	model->NPC_Saver[0].Map_Belonging = 1;	
 	model->NPC_Saver[0].Map_Drawing_Picture =loadImage("NPC_0.png");
 	model->NPC_Saver[0].Dialog_Sequence.push_back(loadImage("TD1.png"));
-	model->NPC_Saver[0].pos.dx=0.8;
-	model->NPC_Saver[0].pos.dy=0.8;
+	model->NPC_Saver[0].pos.dx=2.5;
+	model->NPC_Saver[0].pos.dy=2.5;
 	model->NPC_Saver[0].NPC_Type=1;
 	//以下代码段不知道可不可以删除
     if(cheche->FacingDirection == 1)

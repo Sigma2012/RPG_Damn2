@@ -5,11 +5,11 @@ Model::Model()
 {
 	cha_x = 0.5f;
 	cha_y = 0.5f;
-	map_x = -1.0f;
-	map_y = -1.0f;
+	map_x = -2.5f;
+	map_y = -2.5f;
 	ConverSeq = NULL;
     NPC_Saver = NULL;
-    NPC_Sum = 1;
+    NPC_Sum = 220;
 	sta_num = 0;
 	Window_Status = MAIN_MENU_STATUS;
 	map_num = 3;

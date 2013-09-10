@@ -6,8 +6,8 @@ Character * Character::instance_ = NULL;
 Character::Character()
 {
     //主角坐标初始化
-	pos.dx = 1.0f;
-	pos.dy = 1.0f;
+	pos.dx = 3.0f;
+	pos.dy = 3.0f;
 	cha_pos.dx = 0.75f;		//战斗界面主角坐标
 	cha_pos.dy = 0.75f;		//初始化
 	///////////////////////
