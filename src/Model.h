@@ -5,6 +5,7 @@
 #define DIALOGUE_STATUS		3
 #define CALLING_MENU_STATUS 	4
 #define FIGHTING_STATUS		5
+#define EVENT_STATUS		6
 #define NPC_SUM 20
 #define ATTACK			"a"
 #define MAGIC			"b"
@@ -40,6 +41,13 @@ class Conversation_Information
 		int Counter;							//记录现在已经到了第几个了
 		vector<int> Conversation_Sequence;		//记录这个对话到底有哪些图片组成
 };
+class Event_Information
+{
+	public:
+		int Counter;//记录对话框现在在第几个位置
+		vector<int> Information_Sequence;
+		int BlackMap_ID;
+};
 class Model
 {
 public:
@@ -48,7 +56,8 @@ public:
 	queue<Image_Info> Drawing_Queue;
 	float map_x, map_y;					//贴图用地图坐标
 	float cha_x, cha_y;					//贴图用主角坐标
-	Conversation_Information* ConverSeq;
+	Conversation_Information* ConverSeq;//当这个指针不为空的时候，说明此时此刻有对话
+	Event_Information* EventSeq;		//当这个指针不为空的时候，说明此时此刻有事件
 	int map_num;						//地图标签,测试状态下地图标签为-1
 	int Window_Status;					//标签，表明现在是出于一个什么样的状态，测试状态下这个为1
 	int cha_num;						//主角贴图判断标签
@@ -64,7 +73,8 @@ public:
 	int cha_id;
 	int cha_fight_id;					//战斗界面的主角贴图标签
 	int Last_Key;
+	
 	private:
 	static Model* instance_;
-	Model();
+	Model(); 
 };

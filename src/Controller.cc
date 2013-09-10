@@ -164,11 +164,11 @@ void Controller::key_press(int key)
 			break;
         }
 		case DIALOGUE_STATUS:		//从这里开始是和NPC进行对话的状态下的键盘响应
-		{
-            switch(key)
+		 {
+             switch(key)
             {
-                case Qt::Key_Space:
-                    model->ConverSeq->Counter++;
+                 case Qt::Key_Space:
+                     model->ConverSeq->Counter++;
                     
                     break;
                 default:
@@ -239,6 +239,17 @@ void Controller::key_press(int key)
             }
             break;
 		}
+		case EVENT_STATUS:
+		{
+			switch(key)
+			{
+				case Qt::Key_Space:
+					model->EventSeq->Counter++;
+					break;
+				default:
+					break;
+			}
+		}
         default:
 			break;
 	}
@@ -290,15 +301,15 @@ void Controller::update_queue()
 			{
 				delete(model -> ConverSeq);
 				model->ConverSeq=NULL;
-				model->Window_Status = MAIN_GAME_STATUS;
+				model->Window_Status = MAIN_GAME_STATUS; 
 			}	
 	
 			if (model->ConverSeq!=NULL)
 			{
-				model->Drawing_Queue.push(Image_Info(0,0.5,1,0.5,model->ConverSeq->Conversation_Sequence[model->ConverSeq->Counter]));
+			 	model->Drawing_Queue.push(Image_Info(0,0.5,1,0.5,model->ConverSeq->Conversation_Sequence[model->ConverSeq->Counter]));
 			}
-			break;
-		}
+		 	break;
+		 }
 		case CALLING_MENU_STATUS:
 			model->Drawing_Queue.push(Image_Info(0.0f, 0.0f, 1.0f, 1.0f, model->map_id[model->map_num]));
 			break;
@@ -321,6 +332,22 @@ void Controller::update_queue()
 	 		 	cheche->attack_success=0;//战斗伤害清零
 
 	 		} */
+			break;
+		}
+		case EVENT_STATUS:
+		{
+
+			if ((model->EventSeq!=NULL)&&(model->EventSeq->Counter==model->EventSeq->Information_Sequence.size()))
+			{
+				delete(model->EventSeq);
+				model->EventSeq=NULL;
+				model->Window_Status=MAIN_GAME_STATUS;
+			}
+			if (model->ConverSeq!=NULL)
+			{
+				model->Drawing_Queue.push(Image_Info(0,0,1.0,1.0,model->EventSeq->BlackMap_ID));
+				model->Drawing_Queue.push(Image_Info(0,0.5,1,0.5,model->EventSeq->Information_Sequence[model->EventSeq->Counter]));
+			}
 			break;
 		}
 		
