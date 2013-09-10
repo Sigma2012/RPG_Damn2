@@ -2,6 +2,7 @@
 #include "Model.h"
 #include "Character.h"
 #include <QtGui/QKeyEvent>
+#define STEP 0.05
 
 Controller::Controller()
 {
@@ -49,7 +50,7 @@ void Controller::key_press(int key)
 							model->map_num = 1;
 				  			break;
 						case 2:break;
-						case 3:
+						case 3:exit(0);
 							break;
 				 		}
 				 	break;
@@ -65,20 +66,20 @@ void Controller::key_press(int key)
             {
                 case Qt::Key_Down:
 					cheche->FacingDirection = 3;
-                    Virtual_y += 0.1f;
+                    Virtual_y += STEP;
                      break; 
                 case Qt::Key_Right:
 					cheche->FacingDirection = 2;
-                    Virtual_x += 0.1f;
+                    Virtual_x += STEP;
                     break; 
                 case Qt::Key_Left:
 					cheche->FacingDirection = 4;
-                    Virtual_x-= 0.1f; 
+                    Virtual_x -= STEP; 
                     break;
                 case Qt::Key_Up:
 					cheche->FacingDirection = 1;
-                    Virtual_y -= 0.1f;
-                    break;
+                    Virtual_y -= STEP;
+                    break; 
                 case Qt::Key_Escape:
                     model->Window_Status = CALLING_MENU_STATUS;
 					model->map_num = 7;
@@ -128,29 +129,29 @@ void Controller::key_press(int key)
                 {
                     case Qt::Key_Down:
                         cheche->FacingDirection = 3;
-                        cheche->pos.dy += 0.1f;
-                        model->map_y -= 0.1f;
+                        cheche->pos.dy += STEP;
+                        model->map_y -= STEP;
                         model->cha_x = pos_trans_x(cheche->pos.dx);
                         model->cha_y = pos_trans_y(cheche->pos.dy);
                          break;
                     case Qt::Key_Right:
                         cheche->FacingDirection = 2;
-                        cheche->pos.dx += 0.1f;
-                        model->map_x -= 0.1f;
+                        cheche->pos.dx += STEP;
+                        model->map_x -= STEP;
                         model->cha_x = pos_trans_x(cheche->pos.dx);
                         model->cha_y = pos_trans_y(cheche->pos.dy);
                          break;
                     case Qt::Key_Left:
                         cheche->FacingDirection = 4;
-                        cheche->pos.dx -= 0.1f;
-                        model->map_x += 0.1f;
+                        cheche->pos.dx -= STEP;
+                        model->map_x += STEP;
                         model->cha_x = pos_trans_x(cheche->pos.dx);
                         model->cha_y = pos_trans_y(cheche->pos.dy);
                         break;
                     case Qt::Key_Up:
                         cheche->FacingDirection = 1;
-                        cheche->pos.dy -= 0.1f;
-                        model->map_y += 0.1f;
+                        cheche->pos.dy -= STEP;
+                        model->map_y += STEP;
                         model->cha_x = pos_trans_x(cheche->pos.dx);
                         model->cha_y = pos_trans_y(cheche->pos.dy);
                         break;
@@ -229,7 +230,7 @@ void Controller::key_press(int key)
 						case 0:
 						case 1:break;
 						case 2:
-							/*QTexit();*/
+							exit(0);
 							break;
 						}
 					break;	
@@ -277,7 +278,7 @@ void Controller::update_queue()
 			}
 			//从这里往下我们开始往贴图队列放置地图
 			{
-				model->Drawing_Queue.push(Image_Info(model->map_x, model->map_y,2,2,model->map_id[model->map_num]));
+				model->Drawing_Queue.push(Image_Info(model->map_x, model->map_y, 6, 6, model->map_id[model->map_num]));
 			}
 			//从这里往下我们开始往贴图队列放置玩家
 			{
