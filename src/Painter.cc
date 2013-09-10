@@ -100,7 +100,13 @@ void Painter::init()
     //初始大地图ID 
     model->map_num =1;
 	model->sta_id = model->map_id[3];
-    //大地图贴图初始坐标
+    //初始化地图下的各种信息。。。
+	//1号地图是我们的大地图
+	model->MapSaver[1].lx = 6;
+	model->MapSaver[1].ly = 6;
+	model->MapSaver[1].map_num_for_this = 1;
+	model->MapSaver[1].map_id = model->map_id[1];
+	//大地图贴图初始坐标
 	model->map_x = -0.5f;
 	model->map_y = -0.5f;
 	//NPC初始化序列

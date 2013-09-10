@@ -48,6 +48,13 @@ class Event_Information
 		vector<int> Information_Sequence;
 		int BlackMap_ID;
 };
+class Map_Container
+{
+	public:
+		int map_num_for_this;
+		int map_id;
+		float lx,ly;
+};
 class Model
 {
 public:
@@ -73,7 +80,7 @@ public:
 	int cha_id;
 	int cha_fight_id;					//战斗界面的主角贴图标签
 	int Last_Key;
-	
+ 	Map_Container MapSaver[10];			//地图的储存信息
 	private:
 	static Model* instance_;
 	Model(); 
