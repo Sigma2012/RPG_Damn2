@@ -3,10 +3,10 @@
 Model * Model::instance_ = NULL;
 Model::Model()
 {
-	cha_x = 0.5f;
-	cha_y = 0.5f;
-	map_x = -2.5f;
-	map_y = -2.5f;
+	cha_x = 0.4f;
+	cha_y = 0.4f;
+	map_x = -0.5f;
+	map_y = -0.5f;
 	ConverSeq = NULL;
     NPC_Saver = NULL;
     NPC_Sum = 220;

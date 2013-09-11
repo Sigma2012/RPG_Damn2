@@ -34,7 +34,7 @@ public:
 	int Map_Drawing_Picture;			//这个NPC对应的地图上的标签
 	int NPC_Type;						//标记NPC属于对话还是敌人还是空气墙
 	coordinate monster_pos;					//战斗怪物坐标
-	bool Exist_Flag;
+	int Exist_Flag;
 	#define Normal_NPC		1
 	#define Fighting_NPC	2
 	#define Invisible_Wall	3

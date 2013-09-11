@@ -47,7 +47,7 @@ void Controller::key_press(int key)
 						case 0:
 						case 1:
 							model->Window_Status = MAIN_GAME_STATUS;
-							model->map_num = 1;
+							model->map_num = 11;
 				  			break;
 						case 2:break;
 						case 3:exit(0);
@@ -97,6 +97,7 @@ void Controller::key_press(int key)
 		    for (int i(0);i<model->NPC_Sum;++i)
 			{
 				if ((model->NPC_Saver[i].Map_Belonging < -50)||(!model->NPC_Saver[i].Exist_Flag)||(model->map_num!=model->NPC_Saver[i].Map_Belonging)) continue;
+                if ((model->NPC_Saver[i].NPC_Type==2)&&(model->NPC_Saver[i].Map_Drawing_Picture==model->NPC_Saver[219].Map_Drawing_Picture)) continue;
                  float Distance = 10;
                 Distance=Pos_Distance(model->NPC_Saver[i].pos.dx,
                                        model->NPC_Saver[i].pos.dy,
@@ -108,7 +109,6 @@ void Controller::key_press(int key)
 					switch(model->NPC_Saver[i].NPC_Type)
 					{
 						case Normal_NPC:
-							model->Window_Status = DIALOGUE_STATUS;
 							flag_for_event = 1;
 							break;
 						case Fighting_NPC:
@@ -282,7 +282,11 @@ void Controller::update_queue()
 			}
 			//从这里往下我们开始往贴图队列放置地图
 			{
-				model->Drawing_Queue.push(Image_Info(model->map_x, model->map_y, 6, 6, model->map_id[model->map_num]));
+				model->Drawing_Queue.push(Image_Info(model->map_x,
+                                                     model->map_y,
+                                                     model->MapSaver[model->map_num].lx,
+                                                     model->MapSaver[model->map_num].ly,
+                                                     model->map_id[model->map_num]));
 			}
 			//从这里往下我们开始往贴图队列放置玩家
 			{
@@ -312,7 +316,7 @@ void Controller::update_queue()
 	
 			if (model->ConverSeq!=NULL)
 			{
-			 	model->Drawing_Queue.push(Image_Info(0,0.5,1,0.5,model->ConverSeq->Conversation_Sequence[model->ConverSeq->Counter]));
+			 	model->Drawing_Queue.push(Image_Info(0,0.656,1,0.344,model->ConverSeq->Conversation_Sequence[model->ConverSeq->Counter]));
 			}
 		 	 break;
 		 }

@@ -7,8 +7,8 @@ Character * Character::instance_ = NULL;
 Character::Character()
 {
     //主角坐标初始化
-	pos.dx = 3.0f;
-	pos.dy = 3.0f;
+	pos.dx = 0.3f;
+	pos.dy = 0.3f;
 	cha_pos.dx = 0.75f;		//战斗界面主角坐标
 	cha_pos.dy = 0.75f;		//初始化
 	///////////////////////
@@ -67,18 +67,19 @@ void NonPlayerCharacter::Transf_Begin()
 	model->map_num =  To_Map_Num;
 	model->map_x = Tr_ma_x;
 	model->map_y = Tr_ma_y;
-	//model->cha_x = Tr_x;
-	//model->cha_y = Tr_y;
 	cheche->pos.dx = Tr_x;
 	cheche->pos.dy = Tr_y;
+	model->cha_x = model->map_x + cheche->pos.dx;
+	model->cha_y = model->map_y + cheche->pos.dy;
 }
 void NonPlayerCharacter::HittingEvent()
 {
 	switch(NPC_Type)
 	{
 		case Normal_NPC:
-				if (Exist_Flag == 02) break;
+				if (Exist_Flag == 2) return;
 				Dialog_Begin();
+                model->Window_Status = DIALOGUE_STATUS;
 				Exist_Flag = 2;
 			break; 
 		case Fighting_NPC:
