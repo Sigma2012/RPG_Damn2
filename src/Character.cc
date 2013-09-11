@@ -74,6 +74,7 @@ void NonPlayerCharacter::Transf_Begin()
 }
 void NonPlayerCharacter::HittingEvent()
 {
+    model->Last_Hit_NPC_Pic = Map_Drawing_Picture;
 	switch(NPC_Type)
 	{
 		case Normal_NPC:
