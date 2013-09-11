@@ -21,9 +21,9 @@ void Painter::paint()
 {
 	ctrl->update_queue();
 	// 修改地图坐标由model和cotroller共同控制
-	switch(model->map_num)
+	switch(model->Window_Status)
 	{
-	case 1:
+	case MAIN_GAME_STATUS:
 	
 		{
  			if (cheche->Leg_Condition)
@@ -34,13 +34,6 @@ void Painter::paint()
 		 	break;
 		} 
 	
-	case 2:
-  		{	
- 			if (cheche->Walking_Time_Tick>0)
-				cheche->Walking_Time_Tick--;
-	 	 	break;
-		
-		}
 	
 	default:
 		break; 

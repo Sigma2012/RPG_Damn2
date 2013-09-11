@@ -43,6 +43,7 @@ NonPlayerCharacter::NonPlayerCharacter()
 	Map_Belonging = 1;
     monster_pos.dx = 0.25f;
     monster_pos.dy = 0.25f;
+	Exist_Flag = 1;
 }
 NonPlayerCharacter::~NonPlayerCharacter()
 {
@@ -76,11 +77,14 @@ void NonPlayerCharacter::HittingEvent()
 	switch(NPC_Type)
 	{
 		case Normal_NPC:
+				if (Exist_Flag == 02) break;
 				Dialog_Begin();
-			break;
+				Exist_Flag = 2;
+			break; 
 		case Fighting_NPC:
+				Exist_Flag = 0;
 				Battle_Begin();
-			break;
+			break; 
 		case Invisible_Wall:
 
 			break;

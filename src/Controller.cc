@@ -96,7 +96,7 @@ void Controller::key_press(int key)
 			bool flag_for_event=0;
 		    for (int i(0);i<model->NPC_Sum;++i)
 			{
-				if (model->NPC_Saver[i].Map_Belonging < -50) continue;
+				if ((model->NPC_Saver[i].Map_Belonging < -50)||(!model->NPC_Saver[i].Exist_Flag)||(model->map_num!=model->NPC_Saver[i].Map_Belonging)) continue;
                  float Distance = 10;
                 Distance=Pos_Distance(model->NPC_Saver[i].pos.dx,
                                        model->NPC_Saver[i].pos.dy,
@@ -292,7 +292,7 @@ void Controller::update_queue()
 			{
 				for (int i(0);i <model->NPC_Sum;++i)
 				{
-					if (model->NPC_Saver[i].Map_Belonging<-50) continue;
+					if ((model->NPC_Saver[i].Map_Belonging<-50)||(!model->NPC_Saver[i].Exist_Flag)) continue;
 					if (model->NPC_Saver[i].Map_Belonging==model->map_num)
 					{
 					model->Drawing_Queue.push(Image_Info(pos_trans_x(model->NPC_Saver[i].pos.dx),pos_trans_y(model->NPC_Saver[i].pos.dy),0.08f,0.145f,model->NPC_Saver[i].Map_Drawing_Picture));
