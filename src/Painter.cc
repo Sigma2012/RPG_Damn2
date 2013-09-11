@@ -47,9 +47,9 @@ void Painter::paint()
 				model->Drawing_Queue.front().Image_ID);
 		  		model->Drawing_Queue.pop();
 		  	}
-    freopen("Coor.txt","w",stdout);
-    printf("%f %f %f %f %f %f\n",model->cha_x,model->cha_y,model->map_x,model->map_y,cheche->pos.dx,cheche->pos.dy);
-    fclose(stdout);
+//    freopen("Coor.txt","w",stdout);
+//    printf("%f %f %f %f %f %f\n",model->cha_x,model->cha_y,model->map_x,model->map_y,cheche->pos.dx,cheche->pos.dy);
+//    fclose(stdout);
 }
 
 void Painter::init()
