@@ -2,7 +2,7 @@
 #include "Model.h"
 #include "Character.h"
 #include "Controller.h"
-
+#include <cstdio>
 NonPlayerCharacter Container[220];
 Painter::Painter(paint_func &func)
 {
@@ -35,17 +35,17 @@ void Painter::paint()
 		} 
 	
 	case 2:
- 		{	
-			if (cheche->Walking_Time_Tick>0)
+  		{	
+ 			if (cheche->Walking_Time_Tick>0)
 				cheche->Walking_Time_Tick--;
-		 	 	break;
+	 	 	break;
 		
 		}
 	
-		default:
+	default:
 		break; 
 	}
-  			while (!model->Drawing_Queue .empty())
+    			while (!model->Drawing_Queue .empty())
 			{
 				fillImage(model->Drawing_Queue.front().Up_x,
 				model->Drawing_Queue.front().Up_y,
@@ -75,10 +75,10 @@ void Painter::init()
 	model->save[13]=loadImage("L2.png");
 	model->save[14]=loadImage("L3.png");
 	model ->save[15]=loadImage("L4.png");
-//	model->save[16]=loadImage("A1.png");
-//	model->save[17]=loadImage("A2.png");
-//	model->save[18]=loadImage("A3.png");
-//	model->save[19]=loadImage("A4.png");
+	model->save[16]=loadImage("A1.png");
+	model->save[17]=loadImage("A2.png");
+	model->save[18]=loadImage("A3.png");
+	model->save[19]=loadImage("B1.png");
 //	model->save[20]=loadImage("B1.png");
 //	model->save[21]=loadImage("B2.png");
 //	model->save[22]=loadImage("B3.png");
@@ -89,7 +89,7 @@ void Painter::init()
 //	model->save[27]=loadImage("C4.png");
 //	model->map_id[0]=loadImage("loading.png");
 	model->map_id[1]=loadImage("main_scene.png");
-//	model->map_id[2]=loadImage("fight_scene.png")i;
+	model->map_id[2]=loadImage("fight_scene.png");
 	model->map_id[3]=loadImage("Start0.png");
  	model->map_id[4]=loadImage("Start1.png");
 	model->map_id[5]=loadImage("Start2.png");
@@ -143,6 +143,14 @@ void Painter::init()
 	model->NPC_Saver[1].Tr_y=3.0;	
 	model->NPC_Saver[1].Tr_ma_x=-2.5;
 	model->NPC_Saver[1].Tr_ma_y=-2.5;	
+	
+	//以下用来设置怪物
+	model->NPC_Saver[2].Map_Belonging= 1;
+	model->NPC_Saver[2].Map_Drawing_Picture =loadImage("NPC_3.png");
+	model->NPC_Saver[2].pos.dx= 2.0;
+	model->NPC_Saver[2].pos.dy= 2.5;
+	model->NPC_Saver[2].NPC_Type = 2;
+	
 	//以下用来设置对话用NPC
 	model->NPC_Saver[0].Map_Belonging = 1;	
 	model->NPC_Saver[0].Map_Drawing_Picture =loadImage("NPC_0.png");
@@ -158,5 +166,5 @@ void Painter::init()
 	else if(cheche->FacingDirection == 3)
 		model->cha_id = model->save[8];
 	else if(cheche->FacingDirection == 4)
-		model->cha_id = model->save[12];
+ 		model->cha_id = model->save[12];
 }

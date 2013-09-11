@@ -50,7 +50,7 @@ NonPlayerCharacter::~NonPlayerCharacter()
 }
 void NonPlayerCharacter::Battle_Begin()
 {	
-	model->map_num = 1;// 战斗界面
+	model->map_num = 2 ;// 战斗界面
 		
 
 }
@@ -59,7 +59,7 @@ void NonPlayerCharacter::Dialog_Begin()
 	model->ConverSeq = new(Conversation_Information);
 	for (int i(0);i<Dialog_Sequence.size();++i)
 		model->ConverSeq->Conversation_Sequence.push_back(Dialog_Sequence[i]);
-	model->ConverSeq->Counter = 0;
+	 model->ConverSeq->Counter = 0;
 }
 void NonPlayerCharacter::Transf_Begin()
 {
