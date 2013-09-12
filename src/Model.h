@@ -80,11 +80,11 @@ public:
 	int cha_id;
 	int cha_fight_id;					//战斗界面的主角贴图标签
 	int Last_Key;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	int Last_Npc;
-=======
-    int Last_Hit_NPC_Pic;               //最后一次碰到的NPC的图是哪张
->>>>>>> 94af013b35b7e768e36a839af485221425404d7a
+//=======
+//    int Last_Hit_NPC_Pic;               //最后一次碰到的NPC的图是哪张
+//>>>>>>> 94af013b35b7e768e36a839af485221425404d7a
  	Map_Container MapSaver[30];			//地图的储存信息
 	private:
 	static Model* instance_;
