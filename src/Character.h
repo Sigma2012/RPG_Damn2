@@ -26,7 +26,7 @@ class NonPlayerCharacter:public Object
 public:
     int Map_Belonging;					//标记这个玩意属于哪个地图
     int To_Map_Num;						//对于传送的NPC我们需要知道要传送到哪个地图
-	float Tr_x,Tr_y,Tr_ma_x,Tr_ma_y;	//传送NPC传送的对应的地图和玩家的坐标:w
+	float Tr_x,Tr_y,Tr_ma_x,Tr_ma_y;	//传送NPC传送的对应的地图和玩家的坐标:
 	virtual void HittingEvent();
     void Dialog_Begin();				//对话NPC的操作
 	void Battle_Begin();				//战斗开始的标志
