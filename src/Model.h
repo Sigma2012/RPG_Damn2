@@ -80,7 +80,8 @@ public:
 	int cha_id;
 	int cha_fight_id;					//战斗界面的主角贴图标签
 	int Last_Key;
-//<<<<<<< HEAD
+	int Before;
+	//<<<<<<< HEAD
 	int Last_Npc;
 //=======
 //    int Last_Hit_NPC_Pic;               //最后一次碰到的NPC的图是哪张

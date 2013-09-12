@@ -81,6 +81,7 @@ void Controller::key_press(int key)
                     Virtual_y -= STEP;
                     break; 
                 case Qt::Key_Escape:
+					model->Before = model->map_num;	
                     model->Window_Status = CALLING_MENU_STATUS;
 					model->map_num = 7;
                     break;
@@ -97,7 +98,7 @@ void Controller::key_press(int key)
 		    for (int i(0);i<model->NPC_Sum;++i)
 			{
 				if ((model->NPC_Saver[i].Map_Belonging < -50)||(!model->NPC_Saver[i].Exist_Flag)||(model->map_num!=model->NPC_Saver[i].Map_Belonging)) continue;
-                if ((model->NPC_Saver[i].NPC_Type==2)&&(model->NPC_Saver[i].Map_Drawing_Picture==model->NPC_Saver[219].Map_Drawing_Picture)) continue;
+                if ((model->NPC_Saver[i].NPC_Type==1)&&(model->NPC_Saver[i].Map_Drawing_Picture==model->NPC_Saver[219].Map_Drawing_Picture)&&(model->NPC_Saver[i].Exist_Flag==2)) continue;
                  float Distance = 10;
                 Distance=Pos_Distance(model->NPC_Saver[i].pos.dx,
                                        model->NPC_Saver[i].pos.dy,
@@ -216,7 +217,7 @@ void Controller::key_press(int key)
             {
                 case Qt::Key_Escape:
                     model ->Window_Status = MAIN_GAME_STATUS;
-					model->map_num = 1;
+					model->map_num = model->Before;
                     break;
 				case Qt::Key_Down:
 					model->callmenu_num = (model->callmenu_num + 1) % 3;

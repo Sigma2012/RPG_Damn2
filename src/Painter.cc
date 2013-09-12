@@ -51,9 +51,9 @@ void Painter::paint()
 				model->Drawing_Queue.front().Image_ID);
 		  		model->Drawing_Queue.pop();
 		  	}
-//    freopen("Coor.txt","w",stdout);
-//    printf("%f %f %f %f %f %f\n",model->cha_x,model->cha_y,model->map_x,model->map_y,cheche->pos.dx,cheche->pos.dy);
-//    fclose(stdout);
+    freopen("Coor.txt","w",stdout);
+    printf("%f %f %f %f %f %f\n",model->cha_x,model->cha_y,model->map_x,model->map_y,cheche->pos.dx,cheche->pos.dy);
+    fclose(stdout);
 }
 
 void Painter::init()
@@ -145,9 +145,9 @@ void Painter::init()
     model->NPC_Saver = &Container[0]; 
 	//以下开始读入NPC
 	//以下用来读入空气墙
+    int Iwall = loadImage("iwall.png");
     {
         freopen("Iwall.txt","r",stdin);
-        int Iwall = loadImage("iwall.png");
         for (int i(0);i<model->NPC_Sum;++i) model->NPC_Saver[i].Map_Belonging=-100;
         for (int i(0);i<116;++i)
         {
@@ -175,11 +175,13 @@ void Painter::init()
         11:小黑屋到大地图的NPC
      
         12~20:预留的空气NPC以及剧情NPC的存储
+     
+        21~??：各种牛叉的怪物
     */
     {
         //这个部分是测试用NPC，现在我们已经和谐掉他了
         model->NPC_Saver[1].Map_Belonging = -1;
-        model->NPC_Saver[1].Map_Drawing_Picture =loadImage("iwall.png");
+        model->NPC_Saver[1].Map_Drawing_Picture =Iwall;
         model->NPC_Saver[1].pos.dx= 2.4;
         model->NPC_Saver[1].pos.dy= 2.5;
         model->NPC_Saver[1].NPC_Type = Trans_Former;
@@ -190,7 +192,7 @@ void Painter::init()
         model->NPC_Saver[1].Tr_ma_y=-2.5;
         //这个部分是图书馆到走廊1的部分，注意到坐标转换参数我们还没有设置
         model->NPC_Saver[3].Map_Belonging = 11;
-        model->NPC_Saver[3].Map_Drawing_Picture =loadImage("iwall.png");
+        model->NPC_Saver[3].Map_Drawing_Picture =Iwall;
         model->NPC_Saver[3].pos.dx= 0.5;
         model->NPC_Saver[3].pos.dy= 0.6;
         model->NPC_Saver[3].NPC_Type = Trans_Former;
@@ -202,7 +204,7 @@ void Painter::init()
 	
     //这个部分是走廊1到走廊2的部分，注意到坐标转换我们还没有设置
         model->NPC_Saver[4].Map_Belonging = 12;
-        model->NPC_Saver[4].Map_Drawing_Picture =loadImage("iwall.png");
+        model->NPC_Saver[4].Map_Drawing_Picture =Iwall;
         model->NPC_Saver[4].pos.dx= 0.0;
         model->NPC_Saver[4].pos.dy= 0.5;
         model->NPC_Saver[4].NPC_Type = Trans_Former;
@@ -214,7 +216,7 @@ void Painter::init()
 	
     //这个部分是走廊2到大地图的部分，请注意我们的坐标参数没有设置
         model->NPC_Saver[5].Map_Belonging = 13;
-        model->NPC_Saver[5].Map_Drawing_Picture =loadImage("iwall.png");
+        model->NPC_Saver[5].Map_Drawing_Picture =Iwall;
         model->NPC_Saver[5].pos.dx= 0.0;
         model->NPC_Saver[5].pos.dy= 0.5;
         model->NPC_Saver[5].NPC_Type = Trans_Former;
@@ -226,7 +228,7 @@ void Painter::init()
 	
     //这个部分是大地图走到小黑屋的部分，请注意我们的坐标参数没有设置
         model->NPC_Saver[6].Map_Belonging = 1;
-        model->NPC_Saver[6].Map_Drawing_Picture =loadImage("iwall.png");
+        model->NPC_Saver[6].Map_Drawing_Picture =Iwall;
         model->NPC_Saver[6].pos.dx= 1.75;
         model->NPC_Saver[6].pos.dy= 1.8;
         model->NPC_Saver[6].NPC_Type = Trans_Former;
@@ -238,7 +240,7 @@ void Painter::init()
      
      //这个部分是小黑屋走到大地图的部分，请注意此处的坐标设置未完成
         model->NPC_Saver[11].Map_Belonging = 14;
-        model->NPC_Saver[11].Map_Drawing_Picture =loadImage("iwall.png");
+        model->NPC_Saver[11].Map_Drawing_Picture =Iwall;
         model->NPC_Saver[11].pos.dx= 0.3;
         model->NPC_Saver[11].pos.dy= 0.65;
         model->NPC_Saver[11].NPC_Type = Trans_Former;
@@ -252,24 +254,119 @@ void Painter::init()
     
 	//以下用来设置怪物
     {
-        model->NPC_Saver[2].Map_Belonging= 1;
+        //2号怪物是测试用怪物，现在已经被和谐
+        int MO1 = loadImage("_Monster_1.png");
+        int MO2 = loadImage("_Monster_2.png");
+        
+        model->NPC_Saver[2].Map_Belonging= -1;
         model->NPC_Saver[2].Map_Drawing_Picture =loadImage("NPC_3.png");
-        model->NPC_Saver[2].pos.dx= 2.0;
-        model->NPC_Saver[2].pos.dy= 2.5;
+        model->NPC_Saver[2].pos.dx= 1.6;
+        model->NPC_Saver[2].pos.dy= 2.0;
         model->NPC_Saver[2].NPC_Type = 2;
-	}
+        //21号之后。。怪物有点多
+        model->NPC_Saver[21].Map_Belonging= 1;
+        model->NPC_Saver[21].Map_Drawing_Picture =MO1;
+        model->NPC_Saver[21].pos.dx= 3.9;
+        model->NPC_Saver[21].pos.dy= 2.45;
+        model->NPC_Saver[21].NPC_Type = 2;
+        
+        model->NPC_Saver[22].Map_Belonging= 1;
+        model->NPC_Saver[22].Map_Drawing_Picture =MO1;
+        model->NPC_Saver[22].pos.dx= 2.7;
+        model->NPC_Saver[22].pos.dy= 2.45;
+        model->NPC_Saver[22].NPC_Type = 2;
+        
+        model->NPC_Saver[23].Map_Belonging= 1;
+        model->NPC_Saver[23].Map_Drawing_Picture =MO1;
+        model->NPC_Saver[23].pos.dx= 2.55;
+        model->NPC_Saver[23].pos.dy= 2.75;
+        model->NPC_Saver[23].NPC_Type = 2;
+        
+        model->NPC_Saver[24].Map_Belonging= 1;
+        model->NPC_Saver[24].Map_Drawing_Picture =MO1;
+        model->NPC_Saver[24].pos.dx= 2.6;
+        model->NPC_Saver[24].pos.dy= 3.25;
+        model->NPC_Saver[24].NPC_Type = 2;
+        
+        model->NPC_Saver[25].Map_Belonging= 1;
+        model->NPC_Saver[25].Map_Drawing_Picture =MO1;
+        model->NPC_Saver[25].pos.dx= 3.05;
+        model->NPC_Saver[25].pos.dy= 3.30;
+        model->NPC_Saver[25].NPC_Type = 2;
+        
+        model->NPC_Saver[26].Map_Belonging= 1;
+        model->NPC_Saver[26].Map_Drawing_Picture =MO1;
+        model->NPC_Saver[26].pos.dx= 4.25;
+        model->NPC_Saver[26].pos.dy= 3.5;
+        model->NPC_Saver[26].NPC_Type = 2;
+    
+        model->NPC_Saver[27].Map_Belonging= 1;
+        model->NPC_Saver[27].Map_Drawing_Picture =MO1;
+        model->NPC_Saver[27].pos.dx= 2.95;
+        model->NPC_Saver[27].pos.dy= 3.70;
+        model->NPC_Saver[27].NPC_Type = 2;
+        
+        model->NPC_Saver[28].Map_Belonging= 1;
+        model->NPC_Saver[28].Map_Drawing_Picture =MO2;
+        model->NPC_Saver[28].pos.dx= 2.05;
+        model->NPC_Saver[28].pos.dy= 3.7;
+        model->NPC_Saver[28].NPC_Type = 2;
+        
+        model->NPC_Saver[29].Map_Belonging= 1;
+        model->NPC_Saver[29].Map_Drawing_Picture =MO2;
+        model->NPC_Saver[29].pos.dx= 3.55;
+        model->NPC_Saver[29].pos.dy= 3.8;
+        model->NPC_Saver[29].NPC_Type = 2;
+        
+        model->NPC_Saver[30].Map_Belonging= 1;
+        model->NPC_Saver[30].Map_Drawing_Picture =MO2;
+        model->NPC_Saver[30].pos.dx= 3.5;
+        model->NPC_Saver[30].pos.dy= 2.15;
+        model->NPC_Saver[30].NPC_Type = 2;
+        
+        model->NPC_Saver[31].Map_Belonging= 1;
+        model->NPC_Saver[31].Map_Drawing_Picture =MO2;
+        model->NPC_Saver[31].pos.dx= 4.10;
+        model->NPC_Saver[31].pos.dy= 2.05;
+        model->NPC_Saver[31].NPC_Type = 2;
+        
+        model->NPC_Saver[32].Map_Belonging= 1;
+        model->NPC_Saver[32].Map_Drawing_Picture =MO2;
+        model->NPC_Saver[32].pos.dx= 2.1;
+        model->NPC_Saver[32].pos.dy= 1.65;
+        model->NPC_Saver[32].NPC_Type = 2;
+        
+        model->NPC_Saver[33].Map_Belonging= 1;
+        model->NPC_Saver[33].Map_Drawing_Picture =MO2;
+        model->NPC_Saver[33].pos.dx= 2.9;
+        model->NPC_Saver[33].pos.dy= 2.65;
+        model->NPC_Saver[33].NPC_Type = 2;
+        
+        model->NPC_Saver[34].Map_Belonging= 1;
+        model->NPC_Saver[34].Map_Drawing_Picture =MO2;
+        model->NPC_Saver[34].pos.dx= 4.25;
+        model->NPC_Saver[34].pos.dy= 2.95;
+        model->NPC_Saver[34].NPC_Type = 2;
+        
+        model->NPC_Saver[35].Map_Belonging= 1;
+        model->NPC_Saver[35].Map_Drawing_Picture =MO2;
+        model->NPC_Saver[35].pos.dx= 2.8;
+        model->NPC_Saver[35].pos.dy= 3.9;
+        model->NPC_Saver[35].NPC_Type = 2;
+        
+    }
 	//以下用来设置对话用NPC
 	{
         //0号NPC是我们的测试用NPC，现在已经和谐
         model->NPC_Saver[0].Map_Belonging = -1;
         model->NPC_Saver[0].Map_Drawing_Picture =loadImage("NPC_0.png");
         model->NPC_Saver[0].Dialog_Sequence.push_back(loadImage("TD1.png"));
-        model->NPC_Saver[0].pos.dx=2.5;
-        model->NPC_Saver[0].pos.dy=2.5;
+        model->NPC_Saver[0].pos.dx=2.55;
+        model->NPC_Saver[0].pos.dy=2.45;
         model->NPC_Saver[0].NPC_Type=1;
         //12号NPC是我们的A对话NPC
         model->NPC_Saver[12].Map_Belonging = 11;
-        model->NPC_Saver[12].Map_Drawing_Picture =loadImage("iwall.png");
+        model->NPC_Saver[12].Map_Drawing_Picture =Iwall;
         model->NPC_Saver[12].Dialog_Sequence.push_back(loadImage("A1.png"));
         model->NPC_Saver[12].Dialog_Sequence.push_back(loadImage("A2.png"));
         model->NPC_Saver[12].Dialog_Sequence.push_back(loadImage("A3.png"));
@@ -289,12 +386,12 @@ void Painter::init()
         model->NPC_Saver[13].NPC_Type=1;
         //14号是我们的C对话NPC,空气NPC
         model->NPC_Saver[14].Map_Belonging = 1;
-        model->NPC_Saver[14].Map_Drawing_Picture =loadImage("iwall.png");
+        model->NPC_Saver[14].Map_Drawing_Picture =Iwall;
         model->NPC_Saver[14].Dialog_Sequence.push_back(loadImage("C1.png"));
         model->NPC_Saver[14].Dialog_Sequence.push_back(loadImage("C2.png"));
         model->NPC_Saver[14].Dialog_Sequence.push_back(loadImage("C3.png"));
-        model->NPC_Saver[14].pos.dx=2.2;
-        model->NPC_Saver[14].pos.dy=2.7;
+        model->NPC_Saver[14].pos.dx=2.12;
+        model->NPC_Saver[14].pos.dy=2.55;
         model->NPC_Saver[14].NPC_Type=1;
         //15号是我们的D对话NPC，老爷爷
         model->NPC_Saver[15].Map_Belonging = 14;
