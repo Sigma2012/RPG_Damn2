@@ -80,6 +80,7 @@ public:
 	int cha_id;
 	int cha_fight_id;					//战斗界面的主角贴图标签
 	int Last_Key;
+	int Last_Npc;
  	Map_Container MapSaver[30];			//地图的储存信息
 	private:
 	static Model* instance_;

@@ -33,7 +33,11 @@ void Painter::paint()
 				cheche->Leg_Condition = 0;
 		 	break;
 		} 
-	
+	case FIGHTING_STATUS:
+		{
+			if (cheche->Walking_Time_Tick>0)
+				cheche->Walking_Time_Tick--;
+		}	
 	
 	default:
 		break; 
@@ -71,19 +75,19 @@ void Painter::init()
         model->save[13]=loadImage("L2.png");
         model->save[14]=loadImage("L3.png");
         model ->save[15]=loadImage("L4.png");
-        model->save[16]=loadImage("A1.png");
-        model->save[17]=loadImage("A2.png");
-        model->save[18]=loadImage("A3.png");
-        model->save[19]=loadImage("B1.png");
-//      model->save[20]=loadImage("B1.png");
-//      model->save[21]=loadImage("B2.png");
-//      model->save[22]=loadImage("B3.png");
-//      model->save[23]=loadImage("B4.png");
-//      model->save[24]=loadImage("C1.png");
-//      model->save[25]=loadImage("C2.png");
-//      model->save[26]=loadImage("C3.png");
-//      model->save[27]=loadImage("C4.png");
-//      model->map_id[0]=loadImage("loading.png");
+        model->save[16]=loadImage("attack.png");
+        model->save[17]=loadImage("attack1.png");
+        model->save[18]=loadImage("attack2.png");
+        model->save[19]=loadImage("attack.png");
+	    model->save[20]=loadImage("A1.png");
+        model->save[21]=loadImage("attack.png");
+        model->save[22]=loadImage("attack.png");
+        model->save[23]=loadImage("magic1.png");
+        model->save[24]=loadImage("magic2.png");
+        model->save[25]=loadImage("attack.png");
+        model->save[26]=loadImage("A1.png");
+        model->save[27]=loadImage("attack.png");
+//        model->map_id[0]=loadImage("loading.png");
         model->map_id[1]=loadImage("main_scene.png");
         model->map_id[2]=loadImage("fight_scene.png");
         model->map_id[3]=loadImage("Start0.png");

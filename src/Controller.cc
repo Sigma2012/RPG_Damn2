@@ -186,18 +186,18 @@ void Controller::key_press(int key)
 			{
 				case Qt::Key_A:
 						if (cheche-> Walking_Time_Tick==0)	
-						cheche->Walking_Time_Tick+=71;
+						cheche->Walking_Time_Tick+=179;
 						cheche->attack_success=cheche->attack_success+2;
 					break; 
 				case Qt::Key_B:
 						if (cheche-> Walking_Time_Tick==0)
-						cheche->Walking_Time_Tick+=71;
+						cheche->Walking_Time_Tick+=179;
 						cheche->attack_success=cheche->attack_success+4;
 						cheche->MP=cheche->MP-1;
-					break;
+					break; 
 				case Qt::Key_C:
 						if (cheche-> Walking_Time_Tick==0)
-						cheche->Walking_Time_Tick+=71;
+						cheche->Walking_Time_Tick+=179;
 						cheche->HP=cheche->HP+10;
 						cheche->MP=cheche->MP+5;
 					break; 
@@ -324,18 +324,19 @@ void Controller::update_queue()
 			model->Drawing_Queue.push(Image_Info(0.0f, 0.0f, 1.0f, 1.0f, model->map_id[model->map_num]));
 			break;
 		case FIGHTING_STATUS:
-		{
-			model->cha_num = 5-(cheche->Walking_Time_Tick/12);
+		{	
+			model->cha_fight_id=model->save[16];
+			model->cha_num = 5-(cheche->Walking_Time_Tick/30);
 			if(model->Last_Key==Qt::Key_A)model->cha_fight_id = model->save[16+model->cha_num];
 			if(model->Last_Key==Qt::Key_B)model->cha_fight_id = model->save[22+model->cha_num];
-			else if(model->Last_Key==Qt::Key_C)model->cha_fight_id = model->save[28+model->cha_num];
-	
+			else if(model->Last_Key==Qt::Key_C)model->cha_fight_id = model->save[28+model->cha_num];	
 			model->Drawing_Queue.push(Image_Info(0.0f, 0.0f,1,1,model->map_id[model->map_num]));
+			model->Drawing_Queue.push(Image_Info(0.25f,0.25f,0.145f,0.145f,model->Last_Npc));
 
-		 		if(model->cha_num == 0||model->cha_num== 3||model->cha_num==5)model->Drawing_Queue.push(Image_Info (0.75f,0.75f,0.08f,0.145f,model->cha_fight_id));
-				else model->Drawing_Queue.push(Image_Info(0.25f,0.25f,0.08f,0.145f,model->cha_fight_id));
+		 		if(model->cha_num == 1||model->cha_num== 2)model->Drawing_Queue.push(Image_Info (0.30f,0.25f,0.145f,0.145f,model->cha_fight_id));
+				else model->Drawing_Queue.push(Image_Info(0.75f,0.75f,0.145f,0.145f,model->cha_fight_id));
 			
-			if(cheche->Walking_Time_Tick==0&&cheche->attack_success>=10)//请家豪把怪物“搞”出来
+			if(cheche->Walking_Time_Tick==0&&cheche->attack_success>=12)//请家豪把怪物“搞”出来
 			{
  				model->map_num=1;   //转回大地图
 	 		 	cheche->attack_success=0;//战斗伤害清零
