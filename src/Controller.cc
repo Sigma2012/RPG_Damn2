@@ -267,7 +267,7 @@ void Controller::update_queue()
 	{
 		case MAIN_MENU_STATUS:
 			model->Drawing_Queue.push(Image_Info(0.0f, 0.0f, 1.0f, 1.0f, model->sta_id));
-			 break; 
+			break; 
 		case MAIN_GAME_STATUS:
 		case DIALOGUE_STATUS:
 		{
@@ -300,7 +300,7 @@ void Controller::update_queue()
 					if ((model->NPC_Saver[i].Map_Belonging<-50)||(!model->NPC_Saver[i].Exist_Flag)) continue;
 					if (model->NPC_Saver[i].Map_Belonging==model->map_num)
 					{
-					model->Drawing_Queue.push(Image_Info(pos_trans_x(model->NPC_Saver[i].pos.dx),pos_trans_y(model->NPC_Saver[i].pos.dy),0.08f,0.145f,model->NPC_Saver[i].Map_Drawing_Picture));
+					model->Drawing_Queue.push(Image_Info(pos_trans_x(model->NPC_Saver[i].pos.dx),pos_trans_y(model->NPC_Saver[i].pos.dy),0.145f,0.145f,model->NPC_Saver[i].Map_Drawing_Picture));
 				 	}	
 				} 
         
@@ -332,8 +332,8 @@ void Controller::update_queue()
 			if(model->Last_Key==Qt::Key_B)model->cha_fight_id = model->save[22+model->cha_num];
 			else if(model->Last_Key==Qt::Key_C)model->cha_fight_id = model->save[28+model->cha_num];	
 			model->Drawing_Queue.push(Image_Info(0.0f, 0.0f,1,1,model->map_id[model->map_num]));
-            if (model->cha_num==4) model->Drawing_Queue.push(Image_Info(0.70f,0.70f,0.145f,0.145f,model->Last_Npc));
-            else model->Drawing_Queue.push(Image_Info(0.25f,0.25f,0.145f,0.145f,model->Last_Npc));
+            if (model->cha_num==4) model->Drawing_Queue.push(Image_Info(0.555f,0.555f,0.29f,0.29f,model->Last_Npc));//受攻击
+				else model->Drawing_Queue.push(Image_Info(0.275f,0.185f,0.29f,0.29f,model->Last_Npc));//原地不动
             if(model->Last_Key==Qt::Key_C)
 			{
 				if(model->cha_num==1||model->cha_num==2||model->cha_num==3)
@@ -343,7 +343,7 @@ void Controller::update_queue()
 			else
             {
 
-		 		if(model->cha_num == 1||model->cha_num== 2)model->Drawing_Queue.push(Image_Info (0.30f,0.25f,0.145f,0.145f,model->cha_fight_id));
+		 		if(model->cha_num == 1||model->cha_num== 2)model->Drawing_Queue.push(Image_Info (0.45f,0.35f,0.145f,0.145f,model->cha_fight_id));
 			    else model->Drawing_Queue.push(Image_Info(0.75f,0.75f,0.145f,0.145f,model->cha_fight_id));
 			}
 			if(cheche->Walking_Time_Tick==0&&cheche->attack_success>=12)//请家豪把怪物“搞”出来
