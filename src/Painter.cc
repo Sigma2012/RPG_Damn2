@@ -87,7 +87,14 @@ void Painter::init()
         model->save[25]=loadImage("attack.png");
         model->save[26]=loadImage("Hitting.png");
         model->save[27]=loadImage("attack.png");
-//        model->map_id[0]=loadImage("loading.png");
+
+		model->save[28]=loadImage("attack.png");
+		model->save[29]=loadImage("_Item_use.png");
+		model->save[30]=loadImage("_Item_use.png");
+		model->save[31]=loadImage("_Item_use.png");
+		model->save[32]=loadImage("Hitting.png");
+		model->save[33]=loadImage("attack.png");
+		//        model->map_id[0]=loadImage("loading.png");
         model->map_id[1]=loadImage("main_scene.png");
         model->map_id[2]=loadImage("fight_scene.png");
         model->map_id[3]=loadImage("Start0.png");
@@ -390,7 +397,7 @@ void Painter::init()
         model->NPC_Saver[14].Dialog_Sequence.push_back(loadImage("C1.png"));
         model->NPC_Saver[14].Dialog_Sequence.push_back(loadImage("C2.png"));
         model->NPC_Saver[14].Dialog_Sequence.push_back(loadImage("C3.png"));
-        model->NPC_Saver[14].pos.dx=2.151;
+        model->NPC_Saver[14].pos.dx=2.155555;
         model->NPC_Saver[14].pos.dy=2.65;
         model->NPC_Saver[14].NPC_Type=1;
         //15号是我们的D对话NPC，老爷爷

@@ -332,11 +332,20 @@ void Controller::update_queue()
 			if(model->Last_Key==Qt::Key_B)model->cha_fight_id = model->save[22+model->cha_num];
 			else if(model->Last_Key==Qt::Key_C)model->cha_fight_id = model->save[28+model->cha_num];	
 			model->Drawing_Queue.push(Image_Info(0.0f, 0.0f,1,1,model->map_id[model->map_num]));
-			model->Drawing_Queue.push(Image_Info(0.25f,0.25f,0.145f,0.145f,model->Last_Npc));
+            if (model->cha_num==4) model->Drawing_Queue.push(Image_Info(0.70f,0.70f,0.145f,0.145f,model->Last_Npc));
+            else model->Drawing_Queue.push(Image_Info(0.25f,0.25f,0.145f,0.145f,model->Last_Npc));
+            if(model->Last_Key==Qt::Key_C)
+			{
+				if(model->cha_num==1||model->cha_num==2||model->cha_num==3)
+					model->Drawing_Queue.push(Image_Info(0.45f,0.45f,0.25f,0.145f,model->cha_fight_id));
+				else model->Drawing_Queue.push(Image_Info(0.75f,0.75f,0.145f,0.145f,model->cha_fight_id)); 
+			}
+			else
+            {
 
 		 		if(model->cha_num == 1||model->cha_num== 2)model->Drawing_Queue.push(Image_Info (0.30f,0.25f,0.145f,0.145f,model->cha_fight_id));
-				else model->Drawing_Queue.push(Image_Info(0.75f,0.75f,0.145f,0.145f,model->cha_fight_id));
-			
+			    else model->Drawing_Queue.push(Image_Info(0.75f,0.75f,0.145f,0.145f,model->cha_fight_id));
+			}
 			if(cheche->Walking_Time_Tick==0&&cheche->attack_success>=12)//请家豪把怪物“搞”出来
 			{
  				model->map_num=1;   //转回大地图
