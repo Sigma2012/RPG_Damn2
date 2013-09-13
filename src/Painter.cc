@@ -3,6 +3,7 @@
 #include "Character.h"
 #include "Controller.h"
 #include <cstdio>
+#include <qsound.h>
 NonPlayerCharacter Container[220];
 Painter::Painter(paint_func &func)
 {
@@ -58,6 +59,8 @@ void Painter::paint()
 
 void Painter::init()
 {
+    QSound bells("wav/Track01.wav");
+    bells.play();
     {
         model->save[0]=loadImage("F1.png");
         model->save[1]=loadImage("F2.png");
@@ -89,9 +92,9 @@ void Painter::init()
         model->save[27]=loadImage("attack.png");
 
 		model->save[28]=loadImage("attack.png");
-		model->save[29]=loadImage("_Item_use.png");
-		model->save[30]=loadImage("_Item_use.png");
-		model->save[31]=loadImage("_Item_use.png");
+        model->save[29]=loadImage("_Item_use.png");
+        model->save[30]=loadImage("_Item_use.png");
+        model->save[31]=loadImage("_Item_use.png");
 		model->save[32]=loadImage("Hitting.png");
 		model->save[33]=loadImage("attack.png");
 		//        model->map_id[0]=loadImage("loading.png");
@@ -112,7 +115,6 @@ void Painter::init()
     }
     //初始大地图ID
 
-	
     model->map_num =1;
 	model->sta_id = model->map_id[3];
     //初始化地图下的各种信息。。。
