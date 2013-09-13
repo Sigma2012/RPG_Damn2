@@ -79,13 +79,13 @@ void Painter::init()
         model->save[17]=loadImage("attack1.png");
         model->save[18]=loadImage("attack2.png");
         model->save[19]=loadImage("attack.png");
-	    model->save[20]=loadImage("A1.png");
+	    model->save[20]=loadImage("Hitting.png");
         model->save[21]=loadImage("attack.png");
         model->save[22]=loadImage("attack.png");
         model->save[23]=loadImage("magic1.png");
         model->save[24]=loadImage("magic2.png");
         model->save[25]=loadImage("attack.png");
-        model->save[26]=loadImage("A1.png");
+        model->save[26]=loadImage("Hitting.png");
         model->save[27]=loadImage("attack.png");
 //        model->map_id[0]=loadImage("loading.png");
         model->map_id[1]=loadImage("main_scene.png");
@@ -390,12 +390,12 @@ void Painter::init()
         model->NPC_Saver[14].Dialog_Sequence.push_back(loadImage("C1.png"));
         model->NPC_Saver[14].Dialog_Sequence.push_back(loadImage("C2.png"));
         model->NPC_Saver[14].Dialog_Sequence.push_back(loadImage("C3.png"));
-        model->NPC_Saver[14].pos.dx=2.12;
-        model->NPC_Saver[14].pos.dy=2.55;
+        model->NPC_Saver[14].pos.dx=2.151;
+        model->NPC_Saver[14].pos.dy=2.65;
         model->NPC_Saver[14].NPC_Type=1;
         //15号是我们的D对话NPC，老爷爷
         model->NPC_Saver[15].Map_Belonging = 14;
-        model->NPC_Saver[15].Map_Drawing_Picture =loadImage("grandpa.png");
+        model->NPC_Saver[15].Map_Drawing_Picture =loadImage("grandpa2.png");
         model->NPC_Saver[15].Dialog_Sequence.push_back(loadImage("D1.png"));
         model->NPC_Saver[15].Dialog_Sequence.push_back(loadImage("D2.png"));
         model->NPC_Saver[15].Dialog_Sequence.push_back(loadImage("D3.png"));
@@ -405,7 +405,7 @@ void Painter::init()
         model->NPC_Saver[15].Dialog_Sequence.push_back(loadImage("D7.png"));
         model->NPC_Saver[15].Dialog_Sequence.push_back(loadImage("D8.png"));
         model->NPC_Saver[15].pos.dx=0.3;
-        model->NPC_Saver[15].pos.dy=0.1;
+		model->NPC_Saver[15].pos.dy=0.2;
         model->NPC_Saver[15].NPC_Type=1;
         
 	}
